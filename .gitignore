@@ -1,0 +1,21 @@
+# Generated research data and run artifacts
+data/raw/
+data/interim/
+artifacts/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+
+# Local environment
+.env
+.env.*
+
+# Keep lawful reference papers and their integrity manifests tracked.
+!references/papers/*.pdf
+!references/SHA256SUMS.txt
+!references/DOWNLOADS.md
