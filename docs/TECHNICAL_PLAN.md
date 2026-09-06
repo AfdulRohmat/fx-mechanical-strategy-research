@@ -1,6 +1,6 @@
 # Technical Plan — FX Mechanical Strategy Research
 
-Status: Phase 00 through Phase 02 complete
+Status: Phase 00 through Phase 03 complete or resolved
 
 Primary contract: `RESEARCH_DECISION_CONTRACT.md` v0.1
 
@@ -160,6 +160,15 @@ Outputs include:
 
 The 1-, 3-, and 6-month diagnostics run only after the primary result is sealed
 and may not alter it.
+
+Current status: `COMPLETE_BLOCKED_BEFORE_OUTCOME`; decision `NOT_TESTED`.
+
+The primary kernel, B0-B2 controls, cost/turnover identity, synchronized
+portfolio aggregation, and trial-registry checks are covered by synthetic
+executable fixtures. The actual Phase 02 outcome file was not read because the
+upstream executable-source, claim-scope, and monthly-total-return gates all
+failed. H1-H5 remain `NOT_TESTED`. B3-B4 outcome machinery and inferential
+evaluation remain dormant until a real executable input is eligible.
 
 ## Phase 04 — cross-sectional challenger
 

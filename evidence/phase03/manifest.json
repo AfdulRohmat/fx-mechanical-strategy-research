@@ -1,0 +1,31 @@
+{
+  "files": [
+    {
+      "bytes": 582,
+      "path": "eligibility_gate.json",
+      "sha256": "5910505e1b30f0e4b5fac472da11ec13a2ac44a6e3802f27e0eb24b634fcd869"
+    },
+    {
+      "bytes": 544,
+      "path": "input_manifest.json",
+      "sha256": "c2b83b5da0e07a7092a8d79194268a66aed048225daf14733cab992dfff3ef4a"
+    },
+    {
+      "bytes": 1028,
+      "path": "REPORT.md",
+      "sha256": "0d03205a7cc2dd8cc8261525a890db2677ab4f0ffd72750c6f46e1d80f99335c"
+    },
+    {
+      "bytes": 808,
+      "path": "summary.json",
+      "sha256": "d8351349ec42fe7f203c10cb49ecf12d5ec6c353f330eac444ba0d367d6ab255"
+    },
+    {
+      "bytes": 268,
+      "path": "trial_registry_audit.json",
+      "sha256": "aec1aedf01cdcb45c68c78fd5cdfd98fbdc5fdfad514b47fb7902d27ad45002a"
+    }
+  ],
+  "generated_at_utc": "2026-09-06T17:09:48Z",
+  "phase": "03-tsmom-replication"
+}

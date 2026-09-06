@@ -1,6 +1,6 @@
 # FX Mechanical Strategy Research
 
-Status: **Phase 02 complete - causal reference-rate layer**
+Status: **Phase 03 complete - blocked before real outcome**
 
 Frozen on: **2026-09-06**
 
@@ -9,6 +9,8 @@ Trading backtest status: **`NOT_TESTED`**
 Phase 01 decision: **`PASS_PREDICTABILITY_ONLY`**
 
 Phase 02 decision: **`COMPLETE_PREDICTABILITY_ONLY`**
+
+Phase 03 decision: **`NOT_TESTED`**
 
 This repository is an evidence-led research program for deterministic foreign
 exchange strategies. It does not begin with a chart pattern and search for
@@ -77,6 +79,19 @@ TSMOM signal or executable PnL was calculated. See
 [`evidence/phase02/REPORT.md`](evidence/phase02/REPORT.md) and
 [`docs/PHASE_02_CANONICAL_LAYER.md`](docs/PHASE_02_CANONICAL_LAYER.md).
 
+## Phase 03 result
+
+The frozen TSMOM kernel and fail-closed eligibility gate are implemented. Unit
+tests cover prior-12-month signal alignment, next-month application, position
+flips, one-way costs, past-only expanding-mean controls, synchronized portfolio
+aggregation, and rejection of price-only inputs.
+
+The real run stopped before opening the Phase 02 reference-change file because
+there is no executable source, executable claim scope, or monthly total-return
+table. H1-H5 therefore remain `NOT_TESTED`; this is not a failed alpha result.
+See [`evidence/phase03/REPORT.md`](evidence/phase03/REPORT.md) and
+[`docs/PHASE_03_TSMOM_GATE.md`](docs/PHASE_03_TSMOM_GATE.md).
+
 ## Why this candidate
 
 The academic record is mixed but informative:
@@ -104,6 +119,8 @@ test the strongest published criticism, not just reproduce the favorable paper.
   - source requirements, audited candidates, result, and permitted next work.
 - [`docs/PHASE_02_CANONICAL_LAYER.md`](docs/PHASE_02_CANONICAL_LAYER.md) -
   causal normalization, month-end selection, and dependence-rule result.
+- [`docs/PHASE_03_TSMOM_GATE.md`](docs/PHASE_03_TSMOM_GATE.md) - frozen kernel,
+  synthetic invariants, and the real-data eligibility result.
 - [`references/README.md`](references/README.md) — annotated bibliography,
   access status, and rules for local paper copies.
 
@@ -121,6 +138,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e ".[dev]"
 .\.venv\Scripts\python.exe -m fx_mechanical_research.phase01_sources
 .\.venv\Scripts\python.exe -m fx_mechanical_research.phase02_canonical
+.\.venv\Scripts\python.exe -m fx_mechanical_research.phase03_tsmom
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\ruff.exe check .
 .\.venv\Scripts\mypy.exe src

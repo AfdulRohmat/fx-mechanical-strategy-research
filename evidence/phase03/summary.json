@@ -1,0 +1,23 @@
+{
+  "blockers": [
+    "PHASE01_EXECUTABLE_TOTAL_RETURN_SOURCE_NOT_QUALIFIED",
+    "PHASE02_CLAIM_SCOPE_IS_NOT_EXECUTABLE",
+    "PHASE02_MONTHLY_TOTAL_RETURN_NOT_BUILT"
+  ],
+  "candidate_pnl_computed": false,
+  "candidate_signal_evaluated": false,
+  "decision": "NOT_TESTED",
+  "eligibility": false,
+  "generated_at_utc": "2026-09-06T17:09:48Z",
+  "hypotheses": {
+    "TSMOM_H1_NET_PORTFOLIO": "NOT_TESTED",
+    "TSMOM_H2_INCREMENTAL_SIGNAL": "NOT_TESTED",
+    "TSMOM_H3_MULTIPLE_TESTING": "NOT_TESTED",
+    "TSMOM_H4_BREADTH_AND_TIME_STABILITY": "NOT_TESTED",
+    "TSMOM_H5_COST_CAPACITY": "NOT_TESTED"
+  },
+  "outcome_file_read": false,
+  "outcome_path_declared": "data/interim/phase02/monthly_reference_changes.csv",
+  "phase": "03-tsmom-replication",
+  "phase_status": "COMPLETE_BLOCKED_BEFORE_OUTCOME"
+}

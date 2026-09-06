@@ -1,0 +1,40 @@
+{
+  "config_version": "0.1",
+  "contract_version": "0.1",
+  "strategy_id": "TSMOM_V1_PRIMARY",
+  "generated_at_utc": "2026-09-06T17:09:48Z",
+  "universe": ["AUD", "CAD", "CHF", "EUR", "GBP", "JPY", "NOK", "NZD", "SEK"],
+  "primary": {
+    "lookback_months": 12,
+    "holding_months": 1,
+    "signal_rule": "SIGN_COMPOUNDED_TRAILING_TOTAL_RETURN",
+    "zero_or_missing_signal": 0,
+    "weighting": "EQUAL_WEIGHT_ELIGIBLE_CURRENCIES",
+    "exposure": "UNSCALED"
+  },
+  "costs": {
+    "turnover_units": "ABS_CURRENT_SIGNAL_MINUS_PREVIOUS_SIGNAL",
+    "deduction": "TURNOVER_UNITS_TIMES_ONE_WAY_COST",
+    "missing_cost": "FAIL"
+  },
+  "controls": {
+    "B0_CASH": "ZERO_EXPOSURE_ZERO_EXCESS_RETURN",
+    "B1_EXPANDING_MEAN_SIGN": "SIGN_OF_PAST_ONLY_EXPANDING_MEAN_TOTAL_RETURN",
+    "B2_ALWAYS_LONG": "CONSTANT_POSITIVE_ONE",
+    "B2_ALWAYS_SHORT": "CONSTANT_NEGATIVE_ONE",
+    "B3_VOLATILITY_SCALED": "DEFERRED_UNTIL_REAL_DATA_ELIGIBLE",
+    "B4_PLACEBO": "DEFERRED_UNTIL_REAL_DATA_ELIGIBLE"
+  },
+  "inference": {
+    "moving_block_length_months": 10,
+    "sensitivity_block_lengths_months": [3, 6, 12],
+    "bootstrap_resamples": 10000,
+    "seed": 20260906,
+    "cluster_unit": "SYNCHRONIZED_CROSS_CURRENCY_MONTH"
+  },
+  "eligibility": {
+    "required_phase01_decision": "PASS_EXECUTABLE_TOTAL_RETURN",
+    "required_phase02_claim_scope": "EXECUTABLE_TOTAL_RETURN",
+    "required_monthly_schema_status": "PASS"
+  }
+}

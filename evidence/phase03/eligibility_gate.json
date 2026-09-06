@@ -1,0 +1,16 @@
+{
+  "blockers": [
+    "PHASE01_EXECUTABLE_TOTAL_RETURN_SOURCE_NOT_QUALIFIED",
+    "PHASE02_CLAIM_SCOPE_IS_NOT_EXECUTABLE",
+    "PHASE02_MONTHLY_TOTAL_RETURN_NOT_BUILT"
+  ],
+  "checked_before_outcome_path": true,
+  "eligible": false,
+  "monthly_total_return_status": "NOT_BUILT",
+  "outcome_file_read": false,
+  "phase01_decision": "PASS_PREDICTABILITY_ONLY",
+  "phase02_claim_scope": "PREDICTABILITY_ONLY",
+  "required_monthly_total_return_status": "PASS",
+  "required_phase01_decision": "PASS_EXECUTABLE_TOTAL_RETURN",
+  "required_phase02_claim_scope": "EXECUTABLE_TOTAL_RETURN"
+}
