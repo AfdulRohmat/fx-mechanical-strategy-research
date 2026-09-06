@@ -1,0 +1,33 @@
+{
+  "config": {
+    "bytes": 1584,
+    "filename": "canonical_reference_v0_1.json",
+    "sha256": "7b8705832d7ca5f1a730ec22e4d73b0ae80250afa2f903e5b978b024c6e1519a"
+  },
+  "generated_interim_files": [
+    {
+      "bytes": 9286992,
+      "committed": false,
+      "path": "canonical_daily_marks.csv",
+      "sha256": "1bc8b8f02058d47234eb1fc776a11f3093be23406456956d9ae9a28e99efe906"
+    },
+    {
+      "bytes": 418477,
+      "committed": false,
+      "path": "canonical_month_end_marks.csv",
+      "sha256": "ccc2ad9facb31d433bdfeb0799c4d27a211468cd831b71e0c0f12b5108fe65b2"
+    },
+    {
+      "bytes": 224621,
+      "committed": false,
+      "path": "monthly_reference_changes.csv",
+      "sha256": "888a17a7c334567c6b2f463f23ba7cdaade86a75526cbe2863f726eae7a51a21"
+    }
+  ],
+  "raw_bis_csv": {
+    "bytes": 448056161,
+    "committed": false,
+    "filename": "WS_XRU_csv_flat.csv",
+    "sha256": "7b9a08e589c910f3b17cdac46960a51f3f29b48108b2c03217013c8713fdab84"
+  }
+}

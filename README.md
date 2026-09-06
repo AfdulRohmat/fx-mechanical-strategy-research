@@ -1,12 +1,14 @@
 # FX Mechanical Strategy Research
 
-Status: **Phase 01 complete - free-source qualification**
+Status: **Phase 02 complete - causal reference-rate layer**
 
 Frozen on: **2026-09-06**
 
 Trading backtest status: **`NOT_TESTED`**
 
 Phase 01 decision: **`PASS_PREDICTABILITY_ONLY`**
+
+Phase 02 decision: **`COMPLETE_PREDICTABILITY_ONLY`**
 
 This repository is an evidence-led research program for deterministic foreign
 exchange strategies. It does not begin with a chart pattern and search for
@@ -61,6 +63,20 @@ The readable result is in
 contract and rationale are in
 [`docs/PHASE_01_SOURCE_QUALIFICATION.md`](docs/PHASE_01_SOURCE_QUALIFICATION.md).
 
+## Phase 02 result
+
+The causal BIS adapter produced 61,398 daily canonical marks, 2,880 synchronized
+month-end marks, and 2,871 monthly reference-rate changes. Raw
+currency-per-USD values are inverted to USD-per-currency, observations receive a
+conservative seven-day availability lag, and the month-end selector cannot use
+future, forward-filled, or more than 14-day-old data.
+
+The pre-signal dependence audit selected a 10-month moving-block length from 319
+synchronized months; 3-, 6-, and 12-month sensitivities remain registered. No
+TSMOM signal or executable PnL was calculated. See
+[`evidence/phase02/REPORT.md`](evidence/phase02/REPORT.md) and
+[`docs/PHASE_02_CANONICAL_LAYER.md`](docs/PHASE_02_CANONICAL_LAYER.md).
+
 ## Why this candidate
 
 The academic record is mixed but informative:
@@ -86,6 +102,8 @@ test the strongest published criticism, not just reproduce the favorable paper.
   plan from source qualification through the prospective lockbox.
 - [`docs/PHASE_01_SOURCE_QUALIFICATION.md`](docs/PHASE_01_SOURCE_QUALIFICATION.md)
   - source requirements, audited candidates, result, and permitted next work.
+- [`docs/PHASE_02_CANONICAL_LAYER.md`](docs/PHASE_02_CANONICAL_LAYER.md) -
+  causal normalization, month-end selection, and dependence-rule result.
 - [`references/README.md`](references/README.md) — annotated bibliography,
   access status, and rules for local paper copies.
 
@@ -102,6 +120,7 @@ tar -xf data\raw\phase01\WS_XRU_csv_flat.zip -C data\raw\phase01
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e ".[dev]"
 .\.venv\Scripts\python.exe -m fx_mechanical_research.phase01_sources
+.\.venv\Scripts\python.exe -m fx_mechanical_research.phase02_canonical
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\ruff.exe check .
 .\.venv\Scripts\mypy.exe src

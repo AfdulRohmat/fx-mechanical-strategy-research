@@ -1,0 +1,49 @@
+{
+  "config_version": "0.1",
+  "contract_version": "0.1",
+  "generated_at_utc": "2026-09-06T17:09:48Z",
+  "claim_scope": "PREDICTABILITY_ONLY",
+  "source": {
+    "source_id": "bis_xru_reference_spot",
+    "expected_csv_sha256": "7b9a08e589c910f3b17cdac46960a51f3f29b48108b2c03217013c8713fdab84",
+    "raw_orientation": "CURRENCY_PER_USD",
+    "canonical_orientation": "USD_PER_CURRENCY",
+    "normal_status_code": "A",
+    "free_confidentiality_code": "F",
+    "observation_time_utc": "17:00:00",
+    "availability_lag_calendar_days": 7,
+    "availability_time_utc": "23:59:59",
+    "availability_rule": "No earlier than seven calendar days after observation; conservative proxy for the documented weekly BIS release cycle."
+  },
+  "window": {
+    "start": "2000-01-03",
+    "end": "2026-08-28"
+  },
+  "required_currency_areas": {
+    "AUD": "AU",
+    "CAD": "CA",
+    "CHF": "CH",
+    "EUR": "XM",
+    "GBP": "GB",
+    "JPY": "JP",
+    "NOK": "NO",
+    "NZD": "NZ",
+    "SEK": "SE"
+  },
+  "month_end": {
+    "decision_time_utc": "23:59:59",
+    "selection": "LATEST_OBSERVATION_AVAILABLE_BY_DECISION",
+    "maximum_staleness_calendar_days": 14,
+    "allow_forward_fill": false,
+    "require_synchronized_g10": true
+  },
+  "dependence_rule": {
+    "series": "EQUAL_WEIGHT_G10_MONTHLY_REFERENCE_CHANGE",
+    "selection": "ONE_PLUS_LAST_SIGNIFICANT_ACF_WITH_INSIGNIFICANT_TAIL",
+    "maximum_lag_months": 24,
+    "insignificant_run_length": 3,
+    "two_sided_normal_critical_value": 1.96,
+    "fallback_block_length_months": 24,
+    "sensitivity_block_lengths_months": [3, 6, 12]
+  }
+}

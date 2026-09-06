@@ -1,0 +1,20 @@
+{
+  "calendar_months": 320,
+  "quote_inversion_identity_failures": 0,
+  "reference_changes": 2871,
+  "required_currencies_per_month": 9,
+  "selected_normal_daily_rows": 61398,
+  "skipped_non_normal_rows": {
+    "AUD": 67,
+    "CAD": 67,
+    "CHF": 67,
+    "EUR": 67,
+    "GBP": 67,
+    "JPY": 67,
+    "NOK": 67,
+    "NZD": 67,
+    "SEK": 67
+  },
+  "synchronized_month_end_marks": 2880,
+  "total_return_rows": 0
+}

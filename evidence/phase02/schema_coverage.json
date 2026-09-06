@@ -1,0 +1,10 @@
+{
+  "canonical_daily_mark": "PASS",
+  "contract_roll_event": "NOT_AVAILABLE",
+  "financing_observation": "NOT_AVAILABLE",
+  "instrument_contract": "DIAGNOSTIC_REFERENCE_ONLY",
+  "monthly_reference_change": "PASS_PREDICTABILITY_ONLY",
+  "monthly_total_return": "NOT_BUILT",
+  "raw_market_observation": "PASS",
+  "transaction_cost_observation": "NOT_AVAILABLE"
+}

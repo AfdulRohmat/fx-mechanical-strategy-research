@@ -1,0 +1,19 @@
+{
+  "candidate_pnl_computed": false,
+  "candidate_signal_evaluated": false,
+  "claim_scope": "PREDICTABILITY_ONLY",
+  "daily_marks": 61398,
+  "executable_total_return_built": false,
+  "first_month": "2000-01-01",
+  "generated_at_utc": "2026-09-06T17:09:48Z",
+  "last_month": "2026-08-01",
+  "maximum_observed_staleness_days": 11,
+  "monthly_marks": 2880,
+  "monthly_reference_changes": 2871,
+  "phase": "02-canonical-reference-layer",
+  "phase_status": "COMPLETE",
+  "selected_block_length_months": 10,
+  "source_id": "bis_xru_reference_spot",
+  "synchronized_months": 319,
+  "trading_claim_status": "NOT_TESTED"
+}

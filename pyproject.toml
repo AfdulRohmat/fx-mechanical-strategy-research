@@ -12,6 +12,7 @@ dependencies = []
 
 [project.scripts]
 mechanical-phase01 = "fx_mechanical_research.phase01_sources:main"
+mechanical-phase02 = "fx_mechanical_research.phase02_canonical:main"
 
 [project.optional-dependencies]
 dev = [
