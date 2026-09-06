@@ -1,0 +1,9 @@
+{
+  "outcome_file_hashed": false,
+  "outcome_file_read": false,
+  "phase01_decision_sha256": "2831f5d35edb9df2a366ec6a716c062929ccfd52db4fe2308689caf5fb11b138",
+  "phase02_schema_sha256": "f15f69030fa6881a6d889f284b0f3064fad0ac30e65215b225b74fab31b2c78a",
+  "phase02_summary_sha256": "5a4ba1024a6466704c86bf2beb51d317077e78f4219971f73e76fc62c0bf3873",
+  "strategy_config_sha256": "012aec0dcb0dcf9b6fef3eaecbca154f9598076d7a8868dc0e266cd8dc364044",
+  "trial_registry_sha256": "550fa60c291989b8eae4f3c71b4f09f82f06e76fd016dc8f11798c49ac8c6f71"
+}
