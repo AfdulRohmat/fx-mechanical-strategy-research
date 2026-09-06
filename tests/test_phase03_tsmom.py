@@ -143,7 +143,8 @@ def test_panel_with_missing_currency_month_fails_closed() -> None:
 
 def test_trial_registry_rejects_contaminated_outcome_flag(tmp_path: Path) -> None:
     config = load_strategy_config(CONFIG_PATH)
-    row = json.loads(TRIAL_REGISTRY.read_text(encoding="utf-8"))
+    first_line = TRIAL_REGISTRY.read_text(encoding="utf-8").splitlines()[0]
+    row = json.loads(first_line)
     row["outcome_inspected"] = True
     registry = tmp_path / "registry.jsonl"
     registry.write_text(json.dumps(row) + "\n", encoding="utf-8")

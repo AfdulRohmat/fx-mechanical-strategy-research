@@ -1,6 +1,6 @@
 # FX Mechanical Strategy Research
 
-Status: **Phase 03 complete - blocked before real outcome**
+Status: **Phase 04 complete - challenger blocked before outcome**
 
 Frozen on: **2026-09-06**
 
@@ -11,6 +11,8 @@ Phase 01 decision: **`PASS_PREDICTABILITY_ONLY`**
 Phase 02 decision: **`COMPLETE_PREDICTABILITY_ONLY`**
 
 Phase 03 decision: **`NOT_TESTED`**
+
+Phase 04 decision: **`NOT_TESTED`**
 
 This repository is an evidence-led research program for deterministic foreign
 exchange strategies. It does not begin with a chart pattern and search for
@@ -92,6 +94,19 @@ table. H1-H5 therefore remain `NOT_TESTED`; this is not a failed alpha result.
 See [`evidence/phase03/REPORT.md`](evidence/phase03/REPORT.md) and
 [`docs/PHASE_03_TSMOM_GATE.md`](docs/PHASE_03_TSMOM_GATE.md).
 
+## Phase 04 result
+
+One cross-sectional challenger is preregistered as a disclosed G10 adaptation
+of Menkhoff et al. MOM12,1: rank executable prior-12-month returns, hold the top
+three long and bottom three short for one month, and rebalance monthly. The
+paper hash, causal ranking, deterministic ties, dollar-neutral leg weights,
+turnover, and costs are covered by tests.
+
+The challenger stopped before actual outcomes because Phase 03 was not evaluated
+and executable total returns remain unavailable. It cannot confirm or rescue
+TSMOM v1. See [`evidence/phase04/REPORT.md`](evidence/phase04/REPORT.md) and
+[`docs/PHASE_04_CHALLENGER_GATE.md`](docs/PHASE_04_CHALLENGER_GATE.md).
+
 ## Why this candidate
 
 The academic record is mixed but informative:
@@ -121,6 +136,8 @@ test the strongest published criticism, not just reproduce the favorable paper.
   causal normalization, month-end selection, and dependence-rule result.
 - [`docs/PHASE_03_TSMOM_GATE.md`](docs/PHASE_03_TSMOM_GATE.md) - frozen kernel,
   synthetic invariants, and the real-data eligibility result.
+- [`docs/PHASE_04_CHALLENGER_GATE.md`](docs/PHASE_04_CHALLENGER_GATE.md) -
+  paper-anchored adaptation and separate evaluation gate.
 - [`references/README.md`](references/README.md) — annotated bibliography,
   access status, and rules for local paper copies.
 
@@ -139,6 +156,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m fx_mechanical_research.phase01_sources
 .\.venv\Scripts\python.exe -m fx_mechanical_research.phase02_canonical
 .\.venv\Scripts\python.exe -m fx_mechanical_research.phase03_tsmom
+.\.venv\Scripts\python.exe -m fx_mechanical_research.phase04_challenger
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\ruff.exe check .
 .\.venv\Scripts\mypy.exe src

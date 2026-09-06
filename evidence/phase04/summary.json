@@ -1,0 +1,22 @@
+{
+  "blockers": [
+    "PHASE01_EXECUTABLE_SOURCE_NOT_QUALIFIED",
+    "PHASE02_SCOPE_NOT_EXECUTABLE",
+    "PHASE02_TOTAL_RETURN_NOT_BUILT",
+    "PHASE03_PRIMARY_NOT_EVALUATED_AND_SEALED"
+  ],
+  "can_confirm_tsmom": false,
+  "can_rescue_tsmom": false,
+  "challenger_id": "MENKHOFF_MOM12_1_G10_THREE_BY_THREE_V0_1",
+  "challenger_pnl_computed": false,
+  "challenger_signal_evaluated": false,
+  "decision": "NOT_TESTED",
+  "eligibility": false,
+  "generated_at_utc": "2026-09-06T17:09:48Z",
+  "implementation_type": "PAPER_ANCHORED_G10_ADAPTATION",
+  "outcome_file_read": false,
+  "outcome_path_declared": "data/interim/phase02/monthly_reference_changes.csv",
+  "phase": "04-cross-sectional-challenger",
+  "phase_status": "COMPLETE_BLOCKED_BEFORE_OUTCOME",
+  "registered_family_size": 1
+}

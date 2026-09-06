@@ -1,0 +1,11 @@
+{
+  "config_sha256": "da1765c4e8c715cb06f6c2287eb338dd499023ca5bcb59822160989f27780998",
+  "outcome_file_hashed": false,
+  "outcome_file_read": false,
+  "paper_sha256": "a6e394d52b2821aa1e811e9bffe313ef4718dae1a20d5599c0fe00701453ad42",
+  "phase01_sha256": "2831f5d35edb9df2a366ec6a716c062929ccfd52db4fe2308689caf5fb11b138",
+  "phase02_schema_sha256": "f15f69030fa6881a6d889f284b0f3064fad0ac30e65215b225b74fab31b2c78a",
+  "phase02_summary_sha256": "5a4ba1024a6466704c86bf2beb51d317077e78f4219971f73e76fc62c0bf3873",
+  "phase03_summary_sha256": "d8351349ec42fe7f203c10cb49ecf12d5ec6c353f330eac444ba0d367d6ab255",
+  "trial_registry_sha256": "7f9bb2181676bc457f8594602d204152648b08166edbf825dcde6bc8cdf829a8"
+}
