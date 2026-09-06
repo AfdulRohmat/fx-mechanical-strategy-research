@@ -1,6 +1,6 @@
 # Technical Plan — FX Mechanical Strategy Research
 
-Status: Phase 00 through Phase 04 complete or resolved
+Status: Phase 00 through Phase 05 complete or resolved; Phase 06 not activated
 
 Primary contract: `RESEARCH_DECISION_CONTRACT.md` v0.1
 
@@ -211,6 +211,15 @@ The report must explain the outcome in plain language and show:
 - multiple-testing correction;
 - limitations of the data and trader model.
 
+Current status: `COMPLETE`; decision `NOT_TESTED`.
+
+The gate verified the complete Phase 01–04 evidence inventories and hashes. It
+then applied data-adequacy precedence: because executable total returns and
+complete costs were not qualified, H1–H5 remain untested rather than failed.
+No gross/net statistics are shown because no candidate PnL was computed. See
+`PHASE_05_HISTORICAL_DECISION.md`, `RESEARCH_REVIEW_PHASE_00_05.md`, and
+`../evidence/phase05/REPORT.md`.
+
 ## Phase 06 — prospective lockbox
 
 Only an approved historical candidate enters this phase. Freeze:
@@ -226,6 +235,13 @@ Only an approved historical candidate enters this phase. Freeze:
 
 Prospective results are appended, never backfilled by modified code. Operational
 monitoring must not reveal a tuned alternative in the same v1 lineage.
+
+Current status: `NOT_ACTIVATED`.
+
+Activation requires the exact historical decision
+`PROCEED_TO_PROSPECTIVE_OBSERVATION_TSMOM_V1`, followed by a reviewed power
+analysis and hash-frozen prospective lockbox. The actual Phase 05 decision is
+`NOT_TESTED`, so no prospective timestamp or sample-size target exists.
 
 ## Explicitly deferred research
 

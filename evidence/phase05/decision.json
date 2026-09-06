@@ -1,0 +1,19 @@
+{
+  "candidate_pnl_computed": false,
+  "candidate_signal_evaluated": false,
+  "challenger_signal_evaluated": false,
+  "decision_reason": "Executable total-return and cost data did not pass Phase 01; Phase 03 therefore stopped before actual outcome access.",
+  "generated_at_utc": "2026-09-06T17:09:48Z",
+  "historical_decision": "NOT_TESTED",
+  "phase": "05-historical-decision",
+  "phase_status": "COMPLETE",
+  "primary_hypotheses": {
+    "TSMOM_H1_NET_PORTFOLIO": "NOT_TESTED",
+    "TSMOM_H2_INCREMENTAL_SIGNAL": "NOT_TESTED",
+    "TSMOM_H3_MULTIPLE_TESTING": "NOT_TESTED",
+    "TSMOM_H4_BREADTH_AND_TIME_STABILITY": "NOT_TESTED",
+    "TSMOM_H5_COST_CAPACITY": "NOT_TESTED"
+  },
+  "prospective_phase_activated": false,
+  "trading_claim_status": "NOT_TESTED"
+}

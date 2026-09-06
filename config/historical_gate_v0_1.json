@@ -1,0 +1,28 @@
+{
+  "config_version": "0.1",
+  "contract_version": "0.1",
+  "generated_at_utc": "2026-09-06T17:09:48Z",
+  "decisions": {
+    "not_tested": "NOT_TESTED",
+    "do_not_proceed": "DO_NOT_PROCEED_WITH_TSMOM_V1",
+    "proceed": "PROCEED_TO_PROSPECTIVE_OBSERVATION_TSMOM_V1"
+  },
+  "required_upstream": {
+    "phase01_decision": "PASS_EXECUTABLE_TOTAL_RETURN",
+    "phase02_claim_scope": "EXECUTABLE_TOTAL_RETURN",
+    "phase02_monthly_total_return": "PASS",
+    "phase03_evaluated_decision": "EVALUATED_ALL_HYPOTHESES"
+  },
+  "required_hypotheses": [
+    "TSMOM_H1_NET_PORTFOLIO",
+    "TSMOM_H2_INCREMENTAL_SIGNAL",
+    "TSMOM_H3_MULTIPLE_TESTING",
+    "TSMOM_H4_BREADTH_AND_TIME_STABILITY",
+    "TSMOM_H5_COST_CAPACITY"
+  ],
+  "supported_hypothesis_status": "SUPPORTED",
+  "failed_hypothesis_status": "NOT_SUPPORTED",
+  "integrity_requirement": "PASS",
+  "challenger_can_change_primary_decision": false,
+  "prospective_activation_requires_exact_decision": "PROCEED_TO_PROSPECTIVE_OBSERVATION_TSMOM_V1"
+}

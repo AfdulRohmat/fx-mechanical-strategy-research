@@ -1,6 +1,6 @@
 # FX Mechanical Strategy Research
 
-Status: **Phase 04 complete - challenger blocked before outcome**
+Status: **Phase 05 complete — historical trading claim not tested**
 
 Frozen on: **2026-09-06**
 
@@ -13,6 +13,10 @@ Phase 02 decision: **`COMPLETE_PREDICTABILITY_ONLY`**
 Phase 03 decision: **`NOT_TESTED`**
 
 Phase 04 decision: **`NOT_TESTED`**
+
+Phase 05 decision: **`NOT_TESTED`**
+
+Phase 06 status: **`NOT_ACTIVATED`**
 
 This repository is an evidence-led research program for deterministic foreign
 exchange strategies. It does not begin with a chart pattern and search for
@@ -107,6 +111,21 @@ and executable total returns remain unavailable. It cannot confirm or rescue
 TSMOM v1. See [`evidence/phase04/REPORT.md`](evidence/phase04/REPORT.md) and
 [`docs/PHASE_04_CHALLENGER_GATE.md`](docs/PHASE_04_CHALLENGER_GATE.md).
 
+## Phase 05 result
+
+The historical decision gate verified every committed Phase 01–04 evidence
+manifest and emitted exactly one contract-valid decision: `NOT_TESTED`.
+Executable holding returns and complete costs were unavailable, so the primary
+strategy and challenger both stopped before reading real outcomes. No alpha
+hypothesis failed because none received an eligible real-data test.
+
+Phase 06 remains `NOT_ACTIVATED`; a prospective clock and observation target
+cannot be derived without a historical proceed result and power analysis. See
+[`evidence/phase05/REPORT.md`](evidence/phase05/REPORT.md),
+[`docs/PHASE_05_HISTORICAL_DECISION.md`](docs/PHASE_05_HISTORICAL_DECISION.md),
+and the readable end-to-end review in
+[`docs/RESEARCH_REVIEW_PHASE_00_05.md`](docs/RESEARCH_REVIEW_PHASE_00_05.md).
+
 ## Why this candidate
 
 The academic record is mixed but informative:
@@ -138,10 +157,14 @@ test the strongest published criticism, not just reproduce the favorable paper.
   synthetic invariants, and the real-data eligibility result.
 - [`docs/PHASE_04_CHALLENGER_GATE.md`](docs/PHASE_04_CHALLENGER_GATE.md) -
   paper-anchored adaptation and separate evaluation gate.
+- [`docs/PHASE_05_HISTORICAL_DECISION.md`](docs/PHASE_05_HISTORICAL_DECISION.md)
+  - manifest audit, final historical decision, and Phase 06 gate.
+- [`docs/RESEARCH_REVIEW_PHASE_00_05.md`](docs/RESEARCH_REVIEW_PHASE_00_05.md) -
+  readable end-to-end findings, unknowns, and honest next choices.
 - [`references/README.md`](references/README.md) — annotated bibliography,
   access status, and rules for local paper copies.
 
-## Reproduce Phase 01
+## Reproduce the complete lineage
 
 Requires Python 3.12-3.14. Download the official BIS flat CSV archive to the
 ignored raw-data folder, extract it, then run:
@@ -157,15 +180,16 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m fx_mechanical_research.phase02_canonical
 .\.venv\Scripts\python.exe -m fx_mechanical_research.phase03_tsmom
 .\.venv\Scripts\python.exe -m fx_mechanical_research.phase04_challenger
+.\.venv\Scripts\python.exe -m fx_mechanical_research.phase05_gate
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\ruff.exe check .
 .\.venv\Scripts\mypy.exe src
 ```
 
-Expected Phase 01 decision:
+Expected final historical decision:
 
 ```text
-PASS_PREDICTABILITY_ONLY
+NOT_TESTED
 ```
 
 ## Relationship to earlier projects
