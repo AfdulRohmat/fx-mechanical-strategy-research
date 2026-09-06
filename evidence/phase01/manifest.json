@@ -1,0 +1,36 @@
+{
+  "files": [
+    {
+      "bytes": 3496,
+      "path": "bis_coverage.json",
+      "sha256": "b525a7dba8700e4e469b7fd58ec0261c4f1d623f43c23bd4113660408f0520be"
+    },
+    {
+      "bytes": 941,
+      "path": "decision.json",
+      "sha256": "2831f5d35edb9df2a366ec6a716c062929ccfd52db4fe2308689caf5fb11b138"
+    },
+    {
+      "bytes": 1318,
+      "path": "prior_evidence_overlap.json",
+      "sha256": "26807ca1e53e1cd16465a954cf4d5d132b98cbc2cd31e2be0ae088ddb951b3f7"
+    },
+    {
+      "bytes": 606,
+      "path": "raw_source_manifest.json",
+      "sha256": "4e729d03bb7c8786f0a55aaad091ad3d9dc5d187dc927a1867810389e2499472"
+    },
+    {
+      "bytes": 4633,
+      "path": "REPORT.md",
+      "sha256": "a732108ca580da1deaabb51ee6571d6ce0bf1710acf42a8969bcf77a02c1789d"
+    },
+    {
+      "bytes": 4553,
+      "path": "source_matrix.csv",
+      "sha256": "5fa7dcaebb9c50877fe0c337f16da1e61946554b7b2abf29bb8d78c25d14eccd"
+    }
+  ],
+  "generated_at_utc": "2026-09-06T17:09:48Z",
+  "phase": "01-source-qualification"
+}

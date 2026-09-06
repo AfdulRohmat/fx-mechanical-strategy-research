@@ -1,0 +1,31 @@
+{
+  "exact_tsmom_v1_previously_computed": false,
+  "historical_fx_outcomes_previously_exposed": true,
+  "historical_window_untouched": false,
+  "repositories": [
+    {
+      "exposed_scope": "GBPUSD history including 2024-2025",
+      "impact": "Different intraday hypotheses, but overlapping FX outcomes prevent an untouched-holdout claim.",
+      "repository": "gbpusd-mechanical-structure",
+      "source": "HistData GBPUSD bid/ask"
+    },
+    {
+      "exposed_scope": "USDJPY employment-event windows from 2017-2024",
+      "impact": "Different event signal, but the same pair and historical outcome dates were inspected.",
+      "repository": "fx-fundamental-analysis",
+      "source": "Dukascopy USDJPY bid/ask"
+    },
+    {
+      "exposed_scope": "G10 development/evaluation data through 2022 plus source POC samples",
+      "impact": "Different macro signal, but multi-currency reference-rate outcomes were inspected.",
+      "repository": "fx-fundamental-bias-engine",
+      "source": "ECB G10 reference rates"
+    },
+    {
+      "exposed_scope": "G10 diagnostic outcomes from 2013-2025",
+      "impact": "Different policy-divergence signal, but overlapping cross-currency outcomes were evaluated.",
+      "repository": "fx-structural-policy-divergence",
+      "source": "ECB G10 reference rates"
+    }
+  ]
+}

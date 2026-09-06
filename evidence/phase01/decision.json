@@ -1,0 +1,25 @@
+{
+  "blocking_reason": "No verified free G10 source stack contains historical total return, transaction costs, and complete instrument mechanics.",
+  "candidate_counts": {
+    "FAIL": 0,
+    "PASS_EXECUTABLE_TOTAL_RETURN": 0,
+    "PASS_PREDICTABILITY_ONLY": 1,
+    "REVIEW_REQUIRED": 5
+  },
+  "candidate_pnl_computed": false,
+  "common_diagnostic_window": {
+    "minimum_latest_date": "2026-08-28",
+    "selection_rule": "Chosen from verified common G10 coverage before any TSMOM return is computed.",
+    "start": "2000-01-03"
+  },
+  "contract_version": "0.1",
+  "generated_at_utc": "2026-09-06T17:09:48Z",
+  "historical_window_untouched": false,
+  "phase": "01-source-qualification",
+  "phase_decision": "PASS_PREDICTABILITY_ONLY",
+  "phase_status": "COMPLETE",
+  "primary_executable_implementation": null,
+  "registry_version": "0.1",
+  "selected_predictability_source": "bis_xru_reference_spot",
+  "trading_claim_status": "NOT_TESTED"
+}

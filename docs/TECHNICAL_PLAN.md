@@ -1,6 +1,6 @@
 # Technical Plan — FX Mechanical Strategy Research
 
-Status: Phase 00 complete; Phase 01 not started
+Status: Phase 00 and Phase 01 complete
 
 Primary contract: `RESEARCH_DECISION_CONTRACT.md` v0.1
 
@@ -88,6 +88,20 @@ Phase 01 must emit a source matrix with one of:
 - `FAIL`.
 
 No candidate strategy PnL is computed in this phase.
+
+Current status: `COMPLETE`.
+
+Result: `PASS_PREDICTABILITY_ONLY`; the executable trading claim remains
+`NOT_TESTED`. BIS XRU is qualified for a reference-rate diagnostic over the
+source-selected common window beginning 2000-01-03. No free candidate passed
+historical financing or total-return, complete transaction costs, and all-leg
+instrument mechanics together. See `PHASE_01_SOURCE_QUALIFICATION.md` and
+`../evidence/phase01/REPORT.md`.
+
+This result activates only the predictability subset of Phase 02. Executable
+return construction, primary TSMOM PnL, and Phases 03-05 remain blocked under
+contract v0.1 unless a source passes `PASS_EXECUTABLE_TOTAL_RETURN` or a dated
+pre-outcome contract amendment changes the claim.
 
 ## Phase 02 — canonical return and execution layer
 

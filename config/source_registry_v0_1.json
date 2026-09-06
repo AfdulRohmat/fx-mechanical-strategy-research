@@ -1,0 +1,227 @@
+{
+  "registry_version": "0.1",
+  "contract_version": "0.1",
+  "qualification_run_time_utc": "2026-09-06T17:09:48Z",
+  "common_diagnostic_window": {
+    "start": "2000-01-03",
+    "minimum_latest_date": "2026-08-28",
+    "selection_rule": "Chosen from verified common G10 coverage before any TSMOM return is computed."
+  },
+  "required_currency_areas": {
+    "AUD": "AU",
+    "CAD": "CA",
+    "CHF": "CH",
+    "EUR": "XM",
+    "GBP": "GB",
+    "JPY": "JP",
+    "NOK": "NO",
+    "NZD": "NZ",
+    "SEK": "SE"
+  },
+  "prior_evidence_overlap": {
+    "exact_tsmom_v1_previously_computed": false,
+    "historical_fx_outcomes_previously_exposed": true,
+    "repositories": [
+      {
+        "repository": "gbpusd-mechanical-structure",
+        "source": "HistData GBPUSD bid/ask",
+        "exposed_scope": "GBPUSD history including 2024-2025",
+        "impact": "Different intraday hypotheses, but overlapping FX outcomes prevent an untouched-holdout claim."
+      },
+      {
+        "repository": "fx-fundamental-analysis",
+        "source": "Dukascopy USDJPY bid/ask",
+        "exposed_scope": "USDJPY employment-event windows from 2017-2024",
+        "impact": "Different event signal, but the same pair and historical outcome dates were inspected."
+      },
+      {
+        "repository": "fx-fundamental-bias-engine",
+        "source": "ECB G10 reference rates",
+        "exposed_scope": "G10 development/evaluation data through 2022 plus source POC samples",
+        "impact": "Different macro signal, but multi-currency reference-rate outcomes were inspected."
+      },
+      {
+        "repository": "fx-structural-policy-divergence",
+        "source": "ECB G10 reference rates",
+        "exposed_scope": "G10 diagnostic outcomes from 2013-2025",
+        "impact": "Different policy-divergence signal, but overlapping cross-currency outcomes were evaluated."
+      }
+    ]
+  },
+  "gates": {
+    "predictability": [
+      "free_reproducible_access",
+      "research_use_terms",
+      "full_g10_coverage",
+      "historical_marks",
+      "timing_documented"
+    ],
+    "executable_total_return": [
+      "free_reproducible_access",
+      "research_use_terms",
+      "full_g10_coverage",
+      "historical_marks",
+      "timing_documented",
+      "historical_trading_costs",
+      "holding_return_or_financing",
+      "instrument_mechanics"
+    ]
+  },
+  "candidates": [
+    {
+      "id": "bis_xru_reference_spot",
+      "source_class": "official_reference_rate",
+      "instrument_model": "non_executable_reference_spot",
+      "checks": {
+        "free_reproducible_access": "PASS",
+        "research_use_terms": "PASS",
+        "full_g10_coverage": "DYNAMIC_BIS",
+        "historical_marks": "DYNAMIC_BIS",
+        "timing_documented": "PASS",
+        "historical_trading_costs": "FAIL",
+        "holding_return_or_financing": "FAIL",
+        "instrument_mechanics": "FAIL"
+      },
+      "evidence_urls": [
+        "https://data.bis.org/topics/XRU",
+        "https://data.bis.org/bulkdownload",
+        "https://data.bis.org/help/legal",
+        "https://www.bis.org/statistics/xrusd/xrusd_doc.pdf"
+      ],
+      "conditions": [
+        "Cite BIS and the applicable national source when statistics are reproduced.",
+        "The committed repository stores coverage evidence and hashes, not the raw bulk file.",
+        "Observed rates are compiled reference rates, not executable broker quotes.",
+        "BIS values are currency units per USD; Phase 02 must invert causally to USD per currency.",
+        "A conservative availability lag is required because the bulk file is updated weekly."
+      ]
+    },
+    {
+      "id": "federal_reserve_h10",
+      "source_class": "official_reference_rate",
+      "instrument_model": "non_executable_reference_spot_cross_check",
+      "checks": {
+        "free_reproducible_access": "PASS",
+        "research_use_terms": "REVIEW",
+        "full_g10_coverage": "PASS",
+        "historical_marks": "PASS",
+        "timing_documented": "PASS",
+        "historical_trading_costs": "FAIL",
+        "holding_return_or_financing": "FAIL",
+        "instrument_mechanics": "FAIL"
+      },
+      "evidence_urls": [
+        "https://www.federalreserve.gov/releases/h10/hist/"
+      ],
+      "conditions": [
+        "All nine non-USD G10 legs are listed in the H.10 historical country tables.",
+        "The common electronic history begins in 2000.",
+        "Rates are noon buying rates or comparable reference observations, not executable quotes.",
+        "Raw redistribution terms require a final legal review before mirroring data."
+      ]
+    },
+    {
+      "id": "dukascopy_jforex_spot",
+      "source_class": "broker_spot",
+      "instrument_model": "rolling_spot_cfd",
+      "checks": {
+        "free_reproducible_access": "PASS",
+        "research_use_terms": "REVIEW",
+        "full_g10_coverage": "PASS",
+        "historical_marks": "PASS",
+        "timing_documented": "PASS",
+        "historical_trading_costs": "REVIEW",
+        "holding_return_or_financing": "FAIL",
+        "instrument_mechanics": "REVIEW"
+      },
+      "evidence_urls": [
+        "https://www.dukascopy.com/api/data/get/historical-data-export",
+        "https://www.dukascopy.com/swiss/english/about/faq/?mob=0",
+        "https://www.dukascopy.com/swiss/english/forex/forex-trading-accounts/overnight/",
+        "https://www.dukascopy.com/trading-tools/disclaimer"
+      ],
+      "conditions": [
+        "Historical bid and ask prices are available and can measure the observed spread.",
+        "The published overnight policy is dynamic and does not expose a verified historical swap-rate series.",
+        "Historical commission, raw-data redistribution, and exact account-tier mechanics remain unresolved."
+      ]
+    },
+    {
+      "id": "oanda_v20_spot",
+      "source_class": "broker_spot",
+      "instrument_model": "rolling_spot_cfd",
+      "checks": {
+        "free_reproducible_access": "REVIEW",
+        "research_use_terms": "REVIEW",
+        "full_g10_coverage": "PASS",
+        "historical_marks": "PASS",
+        "timing_documented": "PASS",
+        "historical_trading_costs": "REVIEW",
+        "holding_return_or_financing": "FAIL",
+        "instrument_mechanics": "REVIEW"
+      },
+      "evidence_urls": [
+        "https://developer.oanda.com/rest-live-v20/instrument-df/",
+        "https://developer.oanda.com/rest-live-v20/authentication/",
+        "https://developer.oanda.com/rest-live-v20/primitives-df/"
+      ],
+      "conditions": [
+        "Bid, ask, and midpoint candles are documented but API access requires an account token.",
+        "The API exposes current financing parameters, not a verified public historical financing series.",
+        "A public, credential-free reproduction path is unavailable."
+      ]
+    },
+    {
+      "id": "cme_currency_futures",
+      "source_class": "exchange_futures",
+      "instrument_model": "listed_currency_futures",
+      "checks": {
+        "free_reproducible_access": "REVIEW",
+        "research_use_terms": "REVIEW",
+        "full_g10_coverage": "REVIEW",
+        "historical_marks": "REVIEW",
+        "timing_documented": "PASS",
+        "historical_trading_costs": "REVIEW",
+        "holding_return_or_financing": "PASS",
+        "instrument_mechanics": "PASS"
+      },
+      "evidence_urls": [
+        "https://www.cmegroup.com/market-data/daily-settlements.html",
+        "https://www.cmegroup.com/market-data/daily-bulletin.html",
+        "https://www.cmegroup.com/datamine.html",
+        "https://www.cmegroup.com/articles/faqs/access-to-cme-group-settlement-data-faq.html",
+        "https://www.cmegroup.com/market-data/cme-group-continuous-price-series.html"
+      ],
+      "conditions": [
+        "Listed futures are the conceptually preferred implementation because carry is embedded and rolls are explicit.",
+        "The audit did not verify credential-free bulk history, redistribution rights, or liquid continuous coverage for all nine legs.",
+        "Free current bulletins do not by themselves establish a reproducible 2000-2026 contract archive."
+      ]
+    },
+    {
+      "id": "bis_spot_plus_policy_proxy",
+      "source_class": "spot_plus_interest_proxy",
+      "instrument_model": "synthetic_currency_return",
+      "checks": {
+        "free_reproducible_access": "PASS",
+        "research_use_terms": "PASS",
+        "full_g10_coverage": "REVIEW",
+        "historical_marks": "DYNAMIC_BIS",
+        "timing_documented": "PASS",
+        "historical_trading_costs": "FAIL",
+        "holding_return_or_financing": "FAIL",
+        "instrument_mechanics": "FAIL"
+      },
+      "evidence_urls": [
+        "https://data.bis.org/topics/XRU",
+        "https://data.bis.org/topics/CBPOL"
+      ],
+      "conditions": [
+        "Policy-rate differentials are not realized forward points or broker swap debits and credits.",
+        "The proxy omits cross-currency basis, tenor conventions, and broker markup.",
+        "Policy-rate coverage was not downloaded in this phase; the stack remains under review.",
+        "It may be a diagnostic feature but cannot satisfy the total-return contract."
+      ]
+    }
+  ]
+}
