@@ -1,0 +1,31 @@
+{
+  "files": [
+    {
+      "bytes": 724,
+      "path": "eligibility_gate.json",
+      "sha256": "7cd2e76e9dc2d31b5c21ba9ef31565f7d0b2715860afbd70fd7601c14f67914c"
+    },
+    {
+      "bytes": 708,
+      "path": "input_manifest.json",
+      "sha256": "2dc242a0b0eae31edb3f63dc18cc159166b6d3d2b4fa642f12f45ad5fe961f5c"
+    },
+    {
+      "bytes": 1151,
+      "path": "REPORT.md",
+      "sha256": "164f17bae65d9ea79bc5ad0c4b6c519c159ca9330de3b096a55a400f4f14aadd"
+    },
+    {
+      "bytes": 785,
+      "path": "summary.json",
+      "sha256": "be341bde6aa2ba92f7c423961e0931e7d79225bc7a461a378eb792cff1349601"
+    },
+    {
+      "bytes": 312,
+      "path": "trial_registry_audit.json",
+      "sha256": "2a0424bc14ad71ed7f2aa26e651dc19fe383ee5add1afce06ffe6568a4ca47bd"
+    }
+  ],
+  "generated_at_utc": "2026-09-06T17:09:48Z",
+  "phase": "04-cross-sectional-challenger"
+}

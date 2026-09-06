@@ -1,0 +1,23 @@
+{
+  "actual": {
+    "monthly_total_return_status": "NOT_BUILT",
+    "phase01_decision": "PASS_PREDICTABILITY_ONLY",
+    "phase02_claim_scope": "PREDICTABILITY_ONLY",
+    "phase03_status": "COMPLETE_BLOCKED_BEFORE_OUTCOME"
+  },
+  "blockers": [
+    "PHASE01_EXECUTABLE_SOURCE_NOT_QUALIFIED",
+    "PHASE02_SCOPE_NOT_EXECUTABLE",
+    "PHASE02_TOTAL_RETURN_NOT_BUILT",
+    "PHASE03_PRIMARY_NOT_EVALUATED_AND_SEALED"
+  ],
+  "checked_before_outcome_path": true,
+  "eligible": false,
+  "outcome_file_read": false,
+  "required": {
+    "monthly_total_return_status": "PASS",
+    "phase01_decision": "PASS_EXECUTABLE_TOTAL_RETURN",
+    "phase02_claim_scope": "EXECUTABLE_TOTAL_RETURN",
+    "phase03_status": "COMPLETE_EVALUATED"
+  }
+}

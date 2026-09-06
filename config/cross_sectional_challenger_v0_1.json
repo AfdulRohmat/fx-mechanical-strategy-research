@@ -1,0 +1,37 @@
+{
+  "config_version": "0.1",
+  "contract_version": "0.1",
+  "challenger_id": "MENKHOFF_MOM12_1_G10_THREE_BY_THREE_V0_1",
+  "generated_at_utc": "2026-09-06T17:09:48Z",
+  "implementation_type": "PAPER_ANCHORED_G10_ADAPTATION",
+  "paper": {
+    "citation": "Menkhoff, Sarno, Schmeling, and Schrimpf, Currency Momentum Strategies, BIS Working Paper 366, 2011",
+    "local_path": "references/papers/P04_menkhoff_et_al_currency_momentum_bis_wp366.pdf",
+    "expected_sha256": "a6e394d52b2821aa1e811e9bffe313ef4718dae1a20d5599c0fe00701453ad42",
+    "source_url": "https://www.bis.org/publ/work366.pdf",
+    "paper_method": "At each month-end, sort currencies on lagged excess return over formation horizons including 12 months, hold for horizons including one month, and take High minus Low.",
+    "g10_adaptation_basis": "The paper notes a G10 industry index long the three best and short the three worst currencies over the prior 12 months."
+  },
+  "universe": ["AUD", "CAD", "CHF", "EUR", "GBP", "JPY", "NOK", "NZD", "SEK"],
+  "formation_months": 12,
+  "holding_months": 1,
+  "ranking_input": "COMPOUNDED_EXECUTABLE_TOTAL_RETURN",
+  "long_count": 3,
+  "short_count": 3,
+  "neutral_count": 3,
+  "leg_weighting": "EQUAL_WEIGHT_WITHIN_EACH_FULL_NOTIONAL_LEG",
+  "long_leg_weight": 1.0,
+  "short_leg_weight": -1.0,
+  "rebalance": "MONTHLY",
+  "tie_break": "ASCENDING_CURRENCY_CODE_AFTER_SCORE",
+  "transaction_cost": "ABS_WEIGHT_CHANGE_TIMES_ONE_WAY_COST",
+  "registered_family_size": 1,
+  "can_confirm_tsmom": false,
+  "can_rescue_tsmom": false,
+  "eligibility": {
+    "required_phase01_decision": "PASS_EXECUTABLE_TOTAL_RETURN",
+    "required_phase02_claim_scope": "EXECUTABLE_TOTAL_RETURN",
+    "required_monthly_schema_status": "PASS",
+    "required_phase03_status": "COMPLETE_EVALUATED"
+  }
+}

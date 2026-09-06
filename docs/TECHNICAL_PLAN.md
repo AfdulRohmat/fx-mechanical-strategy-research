@@ -1,6 +1,6 @@
 # Technical Plan — FX Mechanical Strategy Research
 
-Status: Phase 00 through Phase 03 complete or resolved
+Status: Phase 00 through Phase 04 complete or resolved
 
 Primary contract: `RESEARCH_DECISION_CONTRACT.md` v0.1
 
@@ -181,6 +181,15 @@ This phase starts only after Phase 03 is immutable. Before any challenger PnL:
 
 The challenger receives a separate decision. It cannot be labeled confirmation
 of TSMOM and cannot rescue a failed TSMOM lineage.
+
+Current status: `COMPLETE_BLOCKED_BEFORE_OUTCOME`; decision `NOT_TESTED`.
+
+One challenger was preregistered:
+`MENKHOFF_MOM12_1_G10_THREE_BY_THREE_V0_1`. It is explicitly a paper-anchored
+G10 adaptation, not an exact replication of the paper's wider six-portfolio
+universe. The hash-verified method, causal ranking, tie handling, full-notional
+long/short legs, turnover, and costs pass synthetic tests. Real evaluation was
+blocked before outcome access by Phase 01-03 eligibility failures.
 
 ## Phase 05 — historical decision gate
 
