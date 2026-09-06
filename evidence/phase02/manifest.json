@@ -1,0 +1,36 @@
+{
+  "files": [
+    {
+      "bytes": 2397,
+      "path": "dependence_diagnostics.json",
+      "sha256": "9acc18f647c78e80e1716bffecb81f71b4c5223e052ccb4f92f7581a250d1338"
+    },
+    {
+      "bytes": 1152,
+      "path": "REPORT.md",
+      "sha256": "7cbfc2b7fbc6361be39f9407d93cce2bcd71a68fd3af730053d46b2fbf041934"
+    },
+    {
+      "bytes": 413,
+      "path": "sample_flow.json",
+      "sha256": "f213ff370743077fcab2efc2a7223add4e44d15e7105db3fe59b1ecc5aa41cdb"
+    },
+    {
+      "bytes": 361,
+      "path": "schema_coverage.json",
+      "sha256": "f15f69030fa6881a6d889f284b0f3064fad0ac30e65215b225b74fab31b2c78a"
+    },
+    {
+      "bytes": 971,
+      "path": "source_manifest.json",
+      "sha256": "1b79c870b7543105bde6edda4c4c9524029ac20551c5423f1b0abd51bf88fe29"
+    },
+    {
+      "bytes": 615,
+      "path": "summary.json",
+      "sha256": "5a4ba1024a6466704c86bf2beb51d317077e78f4219971f73e76fc62c0bf3873"
+    }
+  ],
+  "generated_at_utc": "2026-09-06T17:09:48Z",
+  "phase": "02-canonical-reference-layer"
+}

@@ -1,0 +1,111 @@
+{
+  "autocorrelations": [
+    {
+      "autocorrelation": 0.016477853609615345,
+      "lag_months": 1
+    },
+    {
+      "autocorrelation": 0.0058940206769717346,
+      "lag_months": 2
+    },
+    {
+      "autocorrelation": 0.05340317757631607,
+      "lag_months": 3
+    },
+    {
+      "autocorrelation": 0.020802504472157278,
+      "lag_months": 4
+    },
+    {
+      "autocorrelation": -0.02036440859981104,
+      "lag_months": 5
+    },
+    {
+      "autocorrelation": 0.05462837396689209,
+      "lag_months": 6
+    },
+    {
+      "autocorrelation": -0.13251533102207283,
+      "lag_months": 7
+    },
+    {
+      "autocorrelation": 0.05088932321428576,
+      "lag_months": 8
+    },
+    {
+      "autocorrelation": -0.13575547317411152,
+      "lag_months": 9
+    },
+    {
+      "autocorrelation": 0.07957071631403241,
+      "lag_months": 10
+    },
+    {
+      "autocorrelation": -0.047882262797127616,
+      "lag_months": 11
+    },
+    {
+      "autocorrelation": -0.059490418488790525,
+      "lag_months": 12
+    },
+    {
+      "autocorrelation": 0.05337626077654346,
+      "lag_months": 13
+    },
+    {
+      "autocorrelation": -0.02842258373289368,
+      "lag_months": 14
+    },
+    {
+      "autocorrelation": -0.04172681794641777,
+      "lag_months": 15
+    },
+    {
+      "autocorrelation": 0.06400573308757462,
+      "lag_months": 16
+    },
+    {
+      "autocorrelation": 0.023227899119717833,
+      "lag_months": 17
+    },
+    {
+      "autocorrelation": 0.0772524560538391,
+      "lag_months": 18
+    },
+    {
+      "autocorrelation": 0.0737153753526789,
+      "lag_months": 19
+    },
+    {
+      "autocorrelation": -0.05184610354667135,
+      "lag_months": 20
+    },
+    {
+      "autocorrelation": 0.054010925059664,
+      "lag_months": 21
+    },
+    {
+      "autocorrelation": -0.02145744871706215,
+      "lag_months": 22
+    },
+    {
+      "autocorrelation": -0.05030258738454524,
+      "lag_months": 23
+    },
+    {
+      "autocorrelation": -0.05029241573241774,
+      "lag_months": 24
+    }
+  ],
+  "observations": 319,
+  "selected_block_length_months": 10,
+  "selection_reason": "One plus the last significant autocorrelation lag, followed by at least 3 insignificant tail lags.",
+  "sensitivity_block_lengths_months": [
+    3,
+    6,
+    12
+  ],
+  "series": "EQUAL_WEIGHT_G10_MONTHLY_REFERENCE_CHANGE",
+  "signal_or_strategy_used": false,
+  "significance_threshold": 0.10973893214734745
+}

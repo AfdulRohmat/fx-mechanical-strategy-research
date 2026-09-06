@@ -1,6 +1,6 @@
 # Technical Plan — FX Mechanical Strategy Research
 
-Status: Phase 00 and Phase 01 complete
+Status: Phase 00 through Phase 02 complete
 
 Primary contract: `RESEARCH_DECISION_CONTRACT.md` v0.1
 
@@ -131,6 +131,15 @@ Key tests:
 
 Phase 02 selects the moving-block length from pre-strategy return dependence,
 records the rule, and freezes it before signal evaluation.
+
+Current status: `COMPLETE_PREDICTABILITY_ONLY`.
+
+The BIS adapter produced 61,398 causal daily marks and 2,880 synchronized
+month-end marks over 320 months. It created price-only changes, not executable
+total returns. The frozen pre-signal ACF rule selected a 10-month moving block;
+3-, 6-, and 12-month sensitivities remain registered. All execution-dependent
+schemas fail closed because financing, roll, and transaction-cost observations
+remain unavailable.
 
 ## Phase 03 — primary TSMOM replication
 
