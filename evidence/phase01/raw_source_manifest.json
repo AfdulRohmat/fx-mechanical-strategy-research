@@ -1,0 +1,19 @@
+{
+  "bis_archive": {
+    "bytes": 10313715,
+    "filename": "WS_XRU_csv_flat.zip",
+    "sha256": "dc806f2ee2d32dcba3f62d313ba91e4d8c12d333a5a15329deddecda38bed31b",
+    "url": "https://data.bis.org/static/bulk/WS_XRU_csv_flat.zip"
+  },
+  "bis_csv": {
+    "bytes": 448056161,
+    "filename": "WS_XRU_csv_flat.csv",
+    "sha256": "7b9a08e589c910f3b17cdac46960a51f3f29b48108b2c03217013c8713fdab84"
+  },
+  "raw_files_committed": false,
+  "source_registry": {
+    "bytes": 9124,
+    "filename": "source_registry_v0_1.json",
+    "sha256": "111aa87dda5dd241613384c49d655535ee5159b20b02865af7244853b8126609"
+  }
+}
