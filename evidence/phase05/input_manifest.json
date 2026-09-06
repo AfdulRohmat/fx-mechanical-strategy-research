@@ -1,0 +1,11 @@
+{
+  "gate_config_sha256": "24b2065bf5e619f5bf577277032c4cc40910849901c6a549674b4c6af8df785d",
+  "research_contract_sha256": "726737daaabfce9c7e3a1b36dd28a5a53a854f716f4501fec8b2cd9fd35e0457",
+  "trial_registry_sha256": "7f9bb2181676bc457f8594602d204152648b08166edbf825dcde6bc8cdf829a8",
+  "upstream_manifest_sha256": {
+    "01-source-qualification": "647a6f0f69e1277e117ed61ac2ec29d6fa0283c319b9b6190b05f8a40d5140b7",
+    "02-canonical-reference-layer": "c8feefe8649371c31e08176c9de66ff39f75af5b57fc4741c3a6103e5f4b97ea",
+    "03-tsmom-replication": "0f6b8133fb805cde3961ec4942e34eebf7b6d09fa99e7ca40537d592ce300d4d",
+    "04-cross-sectional-challenger": "b5f571bb9f0c87e8f885ae58eeeb4dc3b491943aa6845aca0a6734442561b449"
+  }
+}

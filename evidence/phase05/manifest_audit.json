@@ -1,0 +1,33 @@
+{
+  "phases": [
+    {
+      "listed_files": 6,
+      "manifest_path": "evidence/phase01/manifest.json",
+      "manifest_sha256": "647a6f0f69e1277e117ed61ac2ec29d6fa0283c319b9b6190b05f8a40d5140b7",
+      "phase": "01-source-qualification",
+      "status": "PASS"
+    },
+    {
+      "listed_files": 6,
+      "manifest_path": "evidence/phase02/manifest.json",
+      "manifest_sha256": "c8feefe8649371c31e08176c9de66ff39f75af5b57fc4741c3a6103e5f4b97ea",
+      "phase": "02-canonical-reference-layer",
+      "status": "PASS"
+    },
+    {
+      "listed_files": 5,
+      "manifest_path": "evidence/phase03/manifest.json",
+      "manifest_sha256": "0f6b8133fb805cde3961ec4942e34eebf7b6d09fa99e7ca40537d592ce300d4d",
+      "phase": "03-tsmom-replication",
+      "status": "PASS"
+    },
+    {
+      "listed_files": 5,
+      "manifest_path": "evidence/phase04/manifest.json",
+      "manifest_sha256": "b5f571bb9f0c87e8f885ae58eeeb4dc3b491943aa6845aca0a6734442561b449",
+      "phase": "04-cross-sectional-challenger",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

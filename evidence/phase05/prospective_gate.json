@@ -1,0 +1,10 @@
+{
+  "activated": false,
+  "actual_decision": "NOT_TESTED",
+  "minimum_observations": null,
+  "phase": "06-prospective-lockbox",
+  "power_analysis_performed": false,
+  "prospective_start_timestamp": null,
+  "reason": "Historical proceed decision was not produced.",
+  "required_decision": "PROCEED_TO_PROSPECTIVE_OBSERVATION_TSMOM_V1"
+}

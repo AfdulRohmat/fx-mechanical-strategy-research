@@ -1,0 +1,36 @@
+{
+  "files": [
+    {
+      "bytes": 762,
+      "path": "decision.json",
+      "sha256": "1594499878ad11c345597b8362c3f856341ef54ac9346b3dd92c941797391e96"
+    },
+    {
+      "bytes": 728,
+      "path": "input_manifest.json",
+      "sha256": "d8a34fca3a14f72bea0dad26fa782cdc0c61b1825104526d25f452901f60cb1e"
+    },
+    {
+      "bytes": 1061,
+      "path": "manifest_audit.json",
+      "sha256": "f5e69db18f709f53ef4bbf6041fc11d5e19d527560e0a8a1bf5b679f101631c2"
+    },
+    {
+      "bytes": 354,
+      "path": "phase_summary.csv",
+      "sha256": "29f7b284398d19f65894b3ad9e2ab23f52114ff775b5774cf0aae8ef8d52534f"
+    },
+    {
+      "bytes": 336,
+      "path": "prospective_gate.json",
+      "sha256": "54fcf4b2d09ab4d2107f9ca4aaaa70f3f17781fb4380cb9c8e01052e6594463d"
+    },
+    {
+      "bytes": 1643,
+      "path": "REPORT.md",
+      "sha256": "46ae824db196e1643d65fbab791f23de783f96bacdbcf961b6d046bfd386d271"
+    }
+  ],
+  "generated_at_utc": "2026-09-06T17:09:48Z",
+  "phase": "05-historical-decision"
+}
