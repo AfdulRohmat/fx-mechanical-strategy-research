@@ -330,7 +330,13 @@ def acquire_monthly_marks(
             for month in months
         }
         for future in as_completed(futures):
-            selected = future.result()
+            currency, month = futures[future]
+            try:
+                selected = future.result()
+            except Exception as exc:
+                raise ModeledPocError(
+                    f"source acquisition failed for {currency} {month:%Y-%m}"
+                ) from exc
             output.append(selected)
             if len(output) % len(months) == 0:
                 print(

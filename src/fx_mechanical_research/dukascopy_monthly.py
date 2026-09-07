@@ -131,10 +131,12 @@ def parse_last_tick(payload: bytes, requested_hour_utc: datetime) -> LastTick | 
         elapsed_ms += int(time_delta)
         bid += Decimal(int(bid_delta)) * multiplier
         ask += Decimal(int(ask_delta)) * multiplier
-        if bid <= 0 or ask < bid:
-            raise DukascopyMonthlyError("decoded quote is invalid")
+        if bid <= 0 or ask <= 0:
+            raise DukascopyMonthlyError("decoded price is non-positive")
     if elapsed_ms >= 3_600_000:
         raise DukascopyMonthlyError("decoded tick falls outside request hour")
+    if ask < bid:
+        raise DukascopyMonthlyError("final decoded quote is crossed")
     observed = datetime.fromtimestamp((timestamp + elapsed_ms) / 1000, UTC)
     return LastTick(observed_at_utc=observed, bid=float(bid), ask=float(ask))
 

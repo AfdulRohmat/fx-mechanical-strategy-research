@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 
 from fx_mechanical_research.dukascopy_monthly import (
+    DukascopyMonthlyError,
     SelectedMonthlyTick,
     parse_last_tick,
     select_monthly_tick,
@@ -97,6 +98,21 @@ def test_tick_parser_decodes_delta_payload_and_one_based_url() -> None:
     assert tick.bid == pytest.approx(150.0)
     assert tick.ask == pytest.approx(150.004)
     assert tick_url("USD-JPY", hour).endswith("/USD-JPY/2024/1/31/16")
+
+
+def test_tick_parser_allows_intermediate_cross_but_rejects_crossed_final() -> None:
+    hour = datetime(2024, 1, 31, 16, tzinfo=UTC)
+    document = json.loads(_payload(hour, bid=150.0, ask=150.001))
+    document["bids"] = [2, 0]
+    document["asks"] = [0, 2]
+
+    tick = parse_last_tick(json.dumps(document).encode(), hour)
+
+    assert tick is not None
+    assert tick.ask > tick.bid
+    document["asks"] = [0, 0]
+    with pytest.raises(DukascopyMonthlyError, match="final decoded quote is crossed"):
+        parse_last_tick(json.dumps(document).encode(), hour)
 
 
 def test_month_selector_uses_cached_backward_fallback_and_inverts(
