@@ -1,0 +1,71 @@
+{
+  "files": [
+    {
+      "bytes": 706,
+      "path": "cost_assumptions.csv",
+      "sha256": "9eef9b5180f314e22d21172eae356967a0910a753cbce3d26fcae4e595d48ff6"
+    },
+    {
+      "bytes": 699,
+      "path": "cross_source_audit.csv",
+      "sha256": "30f151df3acf0325b591374da6d52e71e36664bc807186161c797d24a72f90ed"
+    },
+    {
+      "bytes": 724,
+      "path": "era_metrics.csv",
+      "sha256": "d604e02fa8e2b4a1cf3f3de07a5199f837a3438bfe9b8a18db8913f11afd2580"
+    },
+    {
+      "bytes": 603,
+      "path": "input_manifest.json",
+      "sha256": "ee783b4dde3060bc9be860c2195d4268e518a9ff24a02d13baff8bd7287dd66f"
+    },
+    {
+      "bytes": 2268,
+      "path": "instrument_metrics.csv",
+      "sha256": "c33ea9f79ad20fc11717655b0ce58c3b2a4da6b9e7c82abfbd127e91cdb96902"
+    },
+    {
+      "bytes": 1627,
+      "path": "leave_one_out.csv",
+      "sha256": "20c02f4041edcd253a42faa819cfe0eb307db3a9ed42d64fe0c58a50e6d0d8ec"
+    },
+    {
+      "bytes": 251,
+      "path": "paired_control.json",
+      "sha256": "6400f5efa27b65871dabf7c63dc1dcb0c73923f7630d9aa233ec25d306f2feb6"
+    },
+    {
+      "bytes": 201543,
+      "path": "portfolio_returns.csv",
+      "sha256": "88973a8fc48dc628fde2ba747245b01ea0670ae2d498ad802c92acd0e94ad754"
+    },
+    {
+      "bytes": 1833,
+      "path": "REPORT.md",
+      "sha256": "ea24072dc0f516c3b3edbd8fbb7e259cbcf1cd6db12966b9a73465ca14e281d1"
+    },
+    {
+      "bytes": 494,
+      "path": "source_coverage.csv",
+      "sha256": "c146c360c00fd7e9d4cfdead34560f592ec124be1aa225922e1fbee1b9d274cd"
+    },
+    {
+      "bytes": 330319,
+      "path": "source_manifest.csv",
+      "sha256": "d7a083c2b63ae51b10c2fdd2c8949694033dd93b8ee6bc144db8e2326c3ee50c"
+    },
+    {
+      "bytes": 3633,
+      "path": "strategy_metrics.csv",
+      "sha256": "e1192f0cc7e6ca49dbaddcf5ec1c052b226db61a0a4eea90e5d93b0439d16c98"
+    },
+    {
+      "bytes": 1675,
+      "path": "summary.json",
+      "sha256": "b93536aa4346eb0a57847c0b64690a1642f5403d1d3e7a9d83786f9ec32f591b"
+    }
+  ],
+  "generated_at_utc": "2026-09-07T04:00:00Z",
+  "phase": "07-modeled-execution-poc"
+}

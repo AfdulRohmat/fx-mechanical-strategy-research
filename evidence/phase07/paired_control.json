@@ -1,0 +1,7 @@
+{
+  "comparison": "BASE_PRIMARY_MINUS_B1_BEFORE_FINANCING",
+  "mean_monthly_difference": -0.0008417278338502344,
+  "mean_monthly_difference_ci_high": 0.0013139169691393907,
+  "mean_monthly_difference_ci_low": -0.0030019340114450363,
+  "months": 167
+}

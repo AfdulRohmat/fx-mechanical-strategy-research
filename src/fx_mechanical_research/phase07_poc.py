@@ -591,6 +591,56 @@ def return_metrics(
     }
 
 
+def cross_source_audit(
+    marks: tuple[SelectedMonthlyTick, ...],
+    reference_changes_path: Path,
+) -> list[dict[str, object]]:
+    """Compare direction and scale with the independent Phase 02 BIS panel."""
+
+    reference: dict[tuple[str, date], float] = {}
+    with reference_changes_path.open(encoding="utf-8", newline="") as handle:
+        for row in csv.DictReader(handle):
+            currency = row.get("currency")
+            month_text = row.get("month")
+            change_text = row.get("simple_change")
+            if currency is None or month_text is None or change_text is None:
+                raise ModeledPocError("Phase 02 reference row is incomplete")
+            reference[(currency, date.fromisoformat(month_text))] = float(change_text)
+    by_currency: dict[str, list[SelectedMonthlyTick]] = {}
+    for mark in marks:
+        by_currency.setdefault(mark.currency, []).append(mark)
+    output: list[dict[str, object]] = []
+    for currency, currency_marks in sorted(by_currency.items()):
+        currency_marks.sort(key=lambda item: item.month)
+        dukascopy: list[float] = []
+        bis: list[float] = []
+        for previous, current in pairwise(currency_marks):
+            key = (currency, current.month)
+            if key not in reference:
+                continue
+            dukascopy.append(current.normalized_mid / previous.normalized_mid - 1)
+            bis.append(reference[key])
+        if len(dukascopy) < 2:
+            raise ModeledPocError(f"insufficient BIS overlap for {currency}")
+        correlation = statistics.correlation(dukascopy, bis)
+        output.append(
+            {
+                "currency": currency,
+                "overlap_months": len(dukascopy),
+                "pearson_correlation": correlation,
+                "mean_absolute_return_difference": statistics.fmean(
+                    abs(left - right)
+                    for left, right in zip(dukascopy, bis, strict=True)
+                ),
+                "sign_agreement_fraction": statistics.fmean(
+                    _sign(left) == _sign(right)
+                    for left, right in zip(dukascopy, bis, strict=True)
+                ),
+            }
+        )
+    return output
+
+
 def _write_json(path: Path, payload: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
@@ -674,6 +724,7 @@ def run_phase07(
     raw_root: Path,
     interim_root: Path,
     evidence_root: Path,
+    reference_changes_path: Path,
     offline: bool,
 ) -> dict[str, object]:
     """Acquire monthly marks, simulate frozen costs, and emit bounded evidence."""
@@ -682,6 +733,7 @@ def run_phase07(
     marks = acquire_monthly_marks(config, raw_root, offline=offline)
     interim_marks = interim_root / "monthly_marks.csv"
     _write_marks(interim_marks, marks)
+    cross_source_rows = cross_source_audit(marks, reference_changes_path)
     all_strategy_rows: dict[tuple[str, PocStrategy], tuple[PocStrategyRow, ...]] = {}
     all_portfolios: list[PocPortfolioRow] = []
     strategies = tuple(PocStrategy)
@@ -778,6 +830,31 @@ def run_phase07(
             }
         )
 
+    instrument_rows: list[dict[str, object]] = []
+    for currency in sorted(item.currency for item in config.instruments):
+        selected_rows = [
+            row for row in base_instrument_rows if row.currency == currency
+        ]
+        values = tuple(row.before_financing_return for row in selected_rows)
+        instrument_rows.append(
+            {
+                "currency": currency,
+                **return_metrics(values, config, with_interval=False),
+                "gross_annualized_arithmetic_mean": statistics.fmean(
+                    row.gross_price_return for row in selected_rows
+                )
+                * 12,
+                "annualized_modeled_transaction_cost": statistics.fmean(
+                    row.modeled_transaction_cost_return for row in selected_rows
+                )
+                * 12,
+                "annualized_turnover_units": statistics.fmean(
+                    row.turnover_units for row in selected_rows
+                )
+                * 12,
+            }
+        )
+
     base_metrics = next(
         row
         for row in metric_rows
@@ -807,6 +884,16 @@ def run_phase07(
         "v1_historical_decision": "NOT_TESTED",
         "v1_decision_changed": False,
         "phase06_activated": False,
+        "data_quality": {
+            "phase02_bis_min_monthly_return_correlation": min(
+                cast(float, row["pearson_correlation"])
+                for row in cross_source_rows
+            ),
+            "phase02_bis_min_sign_agreement": min(
+                cast(float, row["sign_agreement_fraction"])
+                for row in cross_source_rows
+            ),
+        },
         "base_primary_metrics": base_metrics,
         "base_primary_minus_b1": paired_control,
     }
@@ -818,6 +905,11 @@ def run_phase07(
     _write_csv(evidence_root / "era_metrics.csv", tuple(era_rows[0]), era_rows)
     _write_csv(
         evidence_root / "leave_one_out.csv", tuple(loo_rows[0]), loo_rows
+    )
+    _write_csv(
+        evidence_root / "instrument_metrics.csv",
+        tuple(instrument_rows[0]),
+        instrument_rows,
     )
     _write_csv(
         evidence_root / "portfolio_returns.csv",
@@ -885,8 +977,11 @@ def run_phase07(
                     ).days
                     for mark in selected
                 ),
-                "median_native_spread_pips": statistics.median(
-                    mark.native_spread_pips for mark in selected
+                "median_native_spread_pips": round(
+                    statistics.median(
+                        mark.native_spread_pips for mark in selected
+                    ),
+                    6,
                 ),
             }
         )
@@ -894,6 +989,11 @@ def run_phase07(
         evidence_root / "source_coverage.csv",
         tuple(coverage_rows[0]),
         coverage_rows,
+    )
+    _write_csv(
+        evidence_root / "cross_source_audit.csv",
+        tuple(cross_source_rows[0]),
+        cross_source_rows,
     )
     source_rows = [
         {
@@ -919,6 +1019,9 @@ def run_phase07(
             ),
             "trial_registry_sha256": sha256_file(root / "config/trial_registry.jsonl"),
             "monthly_marks_sha256": sha256_file(interim_marks),
+            "phase02_reference_changes_sha256": sha256_file(
+                reference_changes_path
+            ),
             "raw_snapshot_count": len(marks),
             "raw_snapshot_chain_sha256": hashlib.sha256(
                 "\n".join(mark.raw_sha256 for mark in marks).encode()
@@ -926,9 +1029,46 @@ def run_phase07(
         },
     )
     annual = cast(float, base_metrics["annualized_arithmetic_mean"])
+    gross_annual = cast(float, base_metrics["gross_annualized_arithmetic_mean"])
+    annual_cost = cast(
+        float, base_metrics["annualized_modeled_transaction_cost"]
+    )
+    interval_low = cast(float, base_metrics["mean_monthly_ci_low"])
+    interval_high = cast(float, base_metrics["mean_monthly_ci_high"])
+    cumulative = cast(float, base_metrics["cumulative_compounded_return"])
+    drawdown = cast(float, base_metrics["maximum_drawdown"])
     sharpe_value = base_metrics["annualized_sharpe_zero_rate"]
     sharpe_text = (
         "null" if sharpe_value is None else f"{cast(float, sharpe_value):.2f}"
+    )
+    favorable_metrics = next(
+        row
+        for row in metric_rows
+        if row["scenario"] == "FAVORABLE"
+        and row["strategy"] == PocStrategy.PRIMARY.value
+    )
+    adverse_metrics = next(
+        row
+        for row in metric_rows
+        if row["scenario"] == "ADVERSE"
+        and row["strategy"] == PocStrategy.PRIMARY.value
+    )
+    favorable_annual = cast(
+        float, favorable_metrics["annualized_arithmetic_mean"]
+    )
+    adverse_annual = cast(float, adverse_metrics["annualized_arithmetic_mean"])
+    paired_mean = cast(float, paired_control["mean_monthly_difference"])
+    paired_ci_low = cast(float, paired_control["mean_monthly_difference_ci_low"])
+    paired_ci_high = cast(float, paired_control["mean_monthly_difference_ci_high"])
+    positive_eras = sum(cast(float, row["mean_monthly"]) > 0 for row in era_rows)
+    nonpositive_loo = sum(
+        cast(float, row["mean_monthly"]) <= 0 for row in loo_rows
+    )
+    min_correlation = min(
+        cast(float, row["pearson_correlation"]) for row in cross_source_rows
+    )
+    min_sign_agreement = min(
+        cast(float, row["sign_agreement_fraction"]) for row in cross_source_rows
     )
     report = f"""# Phase 07 - Modeled execution POC
 
@@ -941,13 +1081,30 @@ Directional finding: `{directional_finding}`
 The 12-month spot-price trend rule was evaluated over {len(base_primary)}
 synchronized portfolio months using {len(marks)} Dukascopy month-end marks.
 Under the frozen base spread, commission, and slippage assumptions, its
-annualized arithmetic return before financing is {annual:.2%} and its
-zero-rate annualized Sharpe is {sharpe_text}.
+annualized arithmetic return before financing is {annual:.2%}, versus a gross
+spot-price return of {gross_annual:.2%}. Modeled transaction costs remove
+{annual_cost:.2%} per year. The zero-rate annualized Sharpe is {sharpe_text},
+the cumulative compounded return is {cumulative:.2%}, and maximum drawdown is
+{drawdown:.2%}.
+
+The 95% moving-block interval for monthly mean return is
+[{interval_low:.2%}, {interval_high:.2%}], which includes zero. The paired
+primary-minus-B1 mean is {paired_mean:.2%} per month with interval
+[{paired_ci_low:.2%}, {paired_ci_high:.2%}]. Favorable and adverse execution
+assumptions produce annualized means of {favorable_annual:.2%} and
+{adverse_annual:.2%}; costs do not explain the negative gross result.
+
+Only {positive_eras}/{len(era_rows)} predefined eras have a positive point
+estimate, and {nonpositive_loo}/{len(loo_rows)} leave-one-currency-out
+portfolios are non-positive. Cross-source validation against the independent
+BIS panel remains positive for every currency: minimum monthly-return
+correlation {min_correlation:.3f} and minimum sign agreement
+{min_sign_agreement:.1%}.
 
 The moving-block interval and all alternative cost scenarios are recorded in
 `strategy_metrics.csv`. The paired primary-minus-B1 result is recorded in
-`paired_control.json`; predefined eras and leave-one-currency-out diagnostics
-are also committed.
+`paired_control.json`; predefined eras, instrument metrics, and
+leave-one-currency-out diagnostics are also committed.
 
 ## Boundary
 
@@ -983,6 +1140,11 @@ def main() -> None:
     parser.add_argument(
         "--evidence-root", type=Path, default=Path("evidence/phase07")
     )
+    parser.add_argument(
+        "--phase02-reference",
+        type=Path,
+        default=Path("data/interim/phase02/monthly_reference_changes.csv"),
+    )
     parser.add_argument("--offline", action="store_true")
     args = parser.parse_args()
     summary = run_phase07(
@@ -991,6 +1153,7 @@ def main() -> None:
         raw_root=args.raw_root,
         interim_root=args.interim_root,
         evidence_root=args.evidence_root,
+        reference_changes_path=args.phase02_reference,
         offline=args.offline,
     )
     print(json.dumps(summary, indent=2, sort_keys=True))

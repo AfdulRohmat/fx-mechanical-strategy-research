@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from datetime import UTC, date, datetime
+from itertools import pairwise
 from pathlib import Path
 
 import pytest
@@ -18,6 +19,7 @@ from fx_mechanical_research.phase07_poc import (
     PocStrategy,
     build_monthly_inputs,
     build_strategy_rows,
+    cross_source_audit,
     load_poc_config,
     moving_block_mean_interval,
 )
@@ -191,3 +193,26 @@ def test_block_bootstrap_is_deterministic() -> None:
 
     assert first == second
     assert first[0] <= first[1]
+
+
+def test_cross_source_audit_detects_matching_orientation(tmp_path: Path) -> None:
+    marks = _synthetic_marks()
+    rows = ["currency,month,start_mark_date,end_mark_date,simple_change,claim_scope"]
+    by_currency: dict[str, list[SelectedMonthlyTick]] = {}
+    for mark in marks:
+        by_currency.setdefault(mark.currency, []).append(mark)
+    for currency, currency_marks in by_currency.items():
+        currency_marks.sort(key=lambda item: item.month)
+        for previous, current in pairwise(currency_marks):
+            change = current.normalized_mid / previous.normalized_mid - 1
+            rows.append(
+                f"{currency},{current.month.isoformat()},x,x,{change},"
+                "PREDICTABILITY_ONLY"
+            )
+    reference = tmp_path / "reference.csv"
+    reference.write_text("\n".join(rows) + "\n", encoding="utf-8")
+
+    audit = cross_source_audit(marks, reference)
+
+    assert len(audit) == 9
+    assert all(row["pearson_correlation"] == pytest.approx(1.0) for row in audit)

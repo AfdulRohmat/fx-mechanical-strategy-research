@@ -1,6 +1,6 @@
 # FX Mechanical Strategy Research
 
-Status: **Phase 05 complete — historical trading claim not tested**
+Status: **Phase 07 modeled-execution POC complete — non-positive point estimate**
 
 Frozen on: **2026-09-06**
 
@@ -17,6 +17,8 @@ Phase 04 decision: **`NOT_TESTED`**
 Phase 05 decision: **`NOT_TESTED`**
 
 Phase 06 status: **`NOT_ACTIVATED`**
+
+Phase 07 status: **`POC_DIAGNOSTIC_ONLY`**
 
 This repository is an evidence-led research program for deterministic foreign
 exchange strategies. It does not begin with a chart pattern and search for
@@ -126,6 +128,26 @@ cannot be derived without a historical proceed result and power analysis. See
 and the readable end-to-end review in
 [`docs/RESEARCH_REVIEW_PHASE_00_05.md`](docs/RESEARCH_REVIEW_PHASE_00_05.md).
 
+## Phase 07 modeled-execution POC
+
+A separate post-v1 POC combines 1,620 Dukascopy month-end bid/ask snapshots
+over 2010–2024 with frozen manual Exness Raw-like spread, commission, and
+slippage assumptions. Swap and financing are excluded, so all modeled net
+results are explicitly before financing.
+
+The 12-month spot-price TSMOM portfolio has a -1.02% annualized arithmetic mean,
+-0.16 Sharpe, and -15.54% cumulative return across 167 months under the base
+cost scenario. Its gross mean is already negative at -0.99% annualized; changing
+from favorable to adverse costs moves the result only from -1.01% to -1.04%.
+The monthly mean interval includes zero, only one of three predefined eras is
+positive, and all nine leave-one-currency-out portfolios remain negative.
+
+This POC provides no positive evidence for the price-only rule, but it is not a
+test of total-return currency momentum because carry is missing. It does not
+change v1 `NOT_TESTED` or activate Phase 06. See
+[`docs/PHASE_07_MODELED_EXECUTION_POC.md`](docs/PHASE_07_MODELED_EXECUTION_POC.md)
+and [`evidence/phase07/REPORT.md`](evidence/phase07/REPORT.md).
+
 ## Why this candidate
 
 The academic record is mixed but informative:
@@ -161,35 +183,43 @@ test the strongest published criticism, not just reproduce the favorable paper.
   - manifest audit, final historical decision, and Phase 06 gate.
 - [`docs/RESEARCH_REVIEW_PHASE_00_05.md`](docs/RESEARCH_REVIEW_PHASE_00_05.md) -
   readable end-to-end findings, unknowns, and honest next choices.
+- [`docs/MODELED_EXECUTION_POC_CONTRACT.md`](docs/MODELED_EXECUTION_POC_CONTRACT.md)
+  - frozen post-v1 assumptions and permitted claim.
+- [`docs/PHASE_07_MODELED_EXECUTION_POC.md`](docs/PHASE_07_MODELED_EXECUTION_POC.md)
+  - readable POC result and limitations.
 - [`references/README.md`](references/README.md) — annotated bibliography,
   access status, and rules for local paper copies.
 
-## Reproduce the complete lineage
+## Verify the checkout and reproduce Phase 07
 
-Requires Python 3.12-3.14. Download the official BIS flat CSV archive to the
-ignored raw-data folder, extract it, then run:
+Requires Python 3.12-3.14. Install the package and run the network-free quality
+gates:
 
 ```powershell
-New-Item -ItemType Directory -Force -Path data\raw\phase01
-curl.exe -L "https://data.bis.org/static/bulk/WS_XRU_csv_flat.zip" `
-  -o "data\raw\phase01\WS_XRU_csv_flat.zip"
-tar -xf data\raw\phase01\WS_XRU_csv_flat.zip -C data\raw\phase01
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e ".[dev]"
-.\.venv\Scripts\python.exe -m fx_mechanical_research.phase01_sources
-.\.venv\Scripts\python.exe -m fx_mechanical_research.phase02_canonical
-.\.venv\Scripts\python.exe -m fx_mechanical_research.phase03_tsmom
-.\.venv\Scripts\python.exe -m fx_mechanical_research.phase04_challenger
-.\.venv\Scripts\python.exe -m fx_mechanical_research.phase05_gate
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\ruff.exe check .
 .\.venv\Scripts\mypy.exe src
 ```
 
-Expected final historical decision:
+Populate the ignored Dukascopy cache and run Phase 07, or replay an existing
+complete cache without network access:
+
+```powershell
+.\.venv\Scripts\python.exe -m fx_mechanical_research.phase07_poc
+.\.venv\Scripts\python.exe -m fx_mechanical_research.phase07_poc --offline
+```
+
+Phase 01–05 evidence is an immutable historical snapshot. Do not overwrite its
+default evidence directories after later append-only trial entries; reproduce
+an older phase into a separate target directory when auditing it.
+
+Expected historical v1 decision and separate POC status:
 
 ```text
 NOT_TESTED
+POC_DIAGNOSTIC_ONLY
 ```
 
 ## Relationship to earlier projects
