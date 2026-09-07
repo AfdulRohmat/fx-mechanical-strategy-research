@@ -1,0 +1,162 @@
+{
+  "config_version": "0.1",
+  "contract_version": "poc-0.1",
+  "poc_id": "TSMOM_DUKASCOPY_EXNESS_RAW_COST_POC_V0_1",
+  "registered_at_utc": "2026-09-07T04:00:00Z",
+  "lineage": "EXPLORATORY_POST_V1",
+  "claim_scope": "MODELED_EXECUTION_BEFORE_FINANCING",
+  "source": {
+    "provider": "DUKASCOPY_JETTA_TICKS",
+    "official_history_url": "https://www.dukascopy.com/api/data/get/historical-data-export",
+    "api_base_url": "https://jetta.dukascopy.com/v1",
+    "parser_version": "dukascopy-jetta-delta-json-v1"
+  },
+  "sample": {
+    "first_month": "2010-01",
+    "last_month": "2024-12",
+    "execution_hour_utc": 16,
+    "maximum_calendar_lookback_days": 7,
+    "selection": "LAST_TICK_IN_FIRST_NONEMPTY_BACKWARD_HOUR",
+    "historical_window_untouched": false
+  },
+  "strategy": {
+    "lookback_months": 12,
+    "holding_months": 1,
+    "signal": "SIGN_COMPOUNDED_TRAILING_SPOT_PRICE_RETURN",
+    "weighting": "EQUAL_WEIGHT_NINE_CURRENCIES",
+    "exposure": "UNSCALED",
+    "controls": [
+      "B0_CASH",
+      "B1_EXPANDING_MEAN_SIGN",
+      "B2_ALWAYS_LONG",
+      "B2_ALWAYS_SHORT"
+    ]
+  },
+  "statistics": {
+    "moving_block_length_months": 10,
+    "bootstrap_resamples": 10000,
+    "seed": 20260907,
+    "annualization_months": 12,
+    "predefined_eras": [
+      ["2011-02", "2015-12"],
+      ["2016-01", "2020-12"],
+      ["2021-01", "2024-12"]
+    ]
+  },
+  "cost_model": {
+    "broker_label": "EXNESS_RAW_LIKE",
+    "assumption_basis": "USER_AUTHORIZED_MANUAL_SIMULATION_NOT_ACCOUNT_OBSERVATION",
+    "account_currency": "USD",
+    "standard_lot_base_units": 100000,
+    "commission_usd_per_lot_per_side": 3.5,
+    "financing_included": false,
+    "native_dukascopy_spread_charged": false,
+    "scenarios": {
+      "FAVORABLE": {
+        "spread_multiplier": 0.75,
+        "slippage_multiplier": 0.0
+      },
+      "BASE": {
+        "spread_multiplier": 1.0,
+        "slippage_multiplier": 1.0
+      },
+      "ADVERSE": {
+        "spread_multiplier": 2.0,
+        "slippage_multiplier": 2.0
+      }
+    }
+  },
+  "universe": [
+    {
+      "currency": "AUD",
+      "symbol": "AUDUSD",
+      "dukascopy_code": "AUD-USD",
+      "quote_orientation": "USD_PER_CURRENCY",
+      "pip_size": 0.0001,
+      "assumed_base_spread_pips": 0.2,
+      "assumed_base_slippage_pips": 0.1
+    },
+    {
+      "currency": "CAD",
+      "symbol": "USDCAD",
+      "dukascopy_code": "USD-CAD",
+      "quote_orientation": "CURRENCY_PER_USD",
+      "pip_size": 0.0001,
+      "assumed_base_spread_pips": 0.3,
+      "assumed_base_slippage_pips": 0.1
+    },
+    {
+      "currency": "CHF",
+      "symbol": "USDCHF",
+      "dukascopy_code": "USD-CHF",
+      "quote_orientation": "CURRENCY_PER_USD",
+      "pip_size": 0.0001,
+      "assumed_base_spread_pips": 0.3,
+      "assumed_base_slippage_pips": 0.1
+    },
+    {
+      "currency": "EUR",
+      "symbol": "EURUSD",
+      "dukascopy_code": "EUR-USD",
+      "quote_orientation": "USD_PER_CURRENCY",
+      "pip_size": 0.0001,
+      "assumed_base_spread_pips": 0.1,
+      "assumed_base_slippage_pips": 0.1
+    },
+    {
+      "currency": "GBP",
+      "symbol": "GBPUSD",
+      "dukascopy_code": "GBP-USD",
+      "quote_orientation": "USD_PER_CURRENCY",
+      "pip_size": 0.0001,
+      "assumed_base_spread_pips": 0.2,
+      "assumed_base_slippage_pips": 0.15
+    },
+    {
+      "currency": "JPY",
+      "symbol": "USDJPY",
+      "dukascopy_code": "USD-JPY",
+      "quote_orientation": "CURRENCY_PER_USD",
+      "pip_size": 0.01,
+      "assumed_base_spread_pips": 0.2,
+      "assumed_base_slippage_pips": 0.1
+    },
+    {
+      "currency": "NOK",
+      "symbol": "USDNOK",
+      "dukascopy_code": "USD-NOK",
+      "quote_orientation": "CURRENCY_PER_USD",
+      "pip_size": 0.0001,
+      "assumed_base_spread_pips": 12.0,
+      "assumed_base_slippage_pips": 2.0
+    },
+    {
+      "currency": "NZD",
+      "symbol": "NZDUSD",
+      "dukascopy_code": "NZD-USD",
+      "quote_orientation": "USD_PER_CURRENCY",
+      "pip_size": 0.0001,
+      "assumed_base_spread_pips": 0.4,
+      "assumed_base_slippage_pips": 0.15
+    },
+    {
+      "currency": "SEK",
+      "symbol": "USDSEK",
+      "dukascopy_code": "USD-SEK",
+      "quote_orientation": "CURRENCY_PER_USD",
+      "pip_size": 0.0001,
+      "assumed_base_spread_pips": 12.0,
+      "assumed_base_slippage_pips": 2.0
+    }
+  ],
+  "decision_boundary": {
+    "permitted_result": "POC_DIAGNOSTIC_ONLY",
+    "cannot_change_v1_decision": true,
+    "cannot_activate_phase06": true,
+    "forbidden_labels": [
+      "EXECUTABLE_TOTAL_RETURN",
+      "NET_PNL_AFTER_ALL_COSTS",
+      "EXNESS_HISTORICAL_BACKTEST"
+    ]
+  }
+}
