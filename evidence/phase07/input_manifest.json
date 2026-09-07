@@ -1,0 +1,9 @@
+{
+  "config_sha256": "f2a91bffd8883ad831d1f373fa6e1257f54028ed94fdb8f742e53fd82a03a655",
+  "contract_sha256": "60b4c2450ae7f4118569f416fea6bc1885a25aeb27faeced5695a61ab4e43677",
+  "monthly_marks_sha256": "0f738d01489ae0c656f8061e3894e0a65b7bd0f18175c040cdf814ba75374a78",
+  "phase02_reference_changes_sha256": "888a17a7c334567c6b2f463f23ba7cdaade86a75526cbe2863f726eae7a51a21",
+  "raw_snapshot_chain_sha256": "1262b22954b38b72cc15e9f17c088a24e85c72ed16911d642cdfef309885f869",
+  "raw_snapshot_count": 1620,
+  "trial_registry_sha256": "5d4d23f404e0423ad49453fc95b7d794a3ec3a706d5e623e3cdf09002346ce49"
+}

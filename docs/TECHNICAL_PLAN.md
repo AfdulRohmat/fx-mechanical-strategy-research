@@ -1,6 +1,6 @@
 # Technical Plan — FX Mechanical Strategy Research
 
-Status: Phase 00 through Phase 05 complete or resolved; Phase 06 not activated
+Status: Phase 00–05 complete; Phase 06 inactive; post-v1 Phase 07 POC complete
 
 Primary contract: `RESEARCH_DECISION_CONTRACT.md` v0.1
 
@@ -242,6 +242,23 @@ Activation requires the exact historical decision
 `PROCEED_TO_PROSPECTIVE_OBSERVATION_TSMOM_V1`, followed by a reviewed power
 analysis and hash-frozen prospective lockbox. The actual Phase 05 decision is
 `NOT_TESTED`, so no prospective timestamp or sample-size target exists.
+
+## Phase 07 — post-v1 modeled-execution POC
+
+This is an exploratory branch around, not through, the prospective gate. It
+uses Dukascopy month-end ticks and manual Exness Raw-like spread, commission,
+and slippage assumptions to evaluate the frozen price-sign mechanism before
+financing.
+
+Current status: `POC_DIAGNOSTIC_ONLY`; directional finding
+`NON_POSITIVE_POINT_ESTIMATE`.
+
+The POC produced 1,620 synchronized marks and 167 strategy months. Gross
+spot-price return is -0.99% annualized and the base before-financing result is
+-1.02% with a -0.16 Sharpe. The moving-block interval includes zero, stability
+and breadth diagnostics are weak, and favorable modeled costs do not change the
+sign. See `MODELED_EXECUTION_POC_CONTRACT.md`,
+`PHASE_07_MODELED_EXECUTION_POC.md`, and `../evidence/phase07/REPORT.md`.
 
 ## Explicitly deferred research
 
