@@ -16,6 +16,7 @@ mechanical-phase02 = "fx_mechanical_research.phase02_canonical:main"
 mechanical-phase03 = "fx_mechanical_research.phase03_tsmom:main"
 mechanical-phase04 = "fx_mechanical_research.phase04_challenger:main"
 mechanical-phase05 = "fx_mechanical_research.phase05_gate:main"
+mechanical-phase07 = "fx_mechanical_research.phase07_poc:main"
 
 [project.optional-dependencies]
 dev = [
