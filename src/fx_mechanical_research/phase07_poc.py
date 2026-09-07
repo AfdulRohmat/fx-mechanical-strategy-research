@@ -307,15 +307,14 @@ def acquire_monthly_marks(
     offline: bool,
     workers: int = 5,
 ) -> tuple[SelectedMonthlyTick, ...]:
-    """Fetch each instrument sequentially while parallelizing across instruments."""
+    """Fetch instrument-months concurrently with an immutable local cache."""
 
     months = month_range(config.first_month, config.last_month)
-
-    def acquire_instrument(
-        instrument: InstrumentAssumption,
-    ) -> tuple[SelectedMonthlyTick, ...]:
-        return tuple(
-            select_monthly_tick(
+    output: list[SelectedMonthlyTick] = []
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        futures = {
+            executor.submit(
+                select_monthly_tick,
                 raw_root=raw_root,
                 currency=instrument.currency,
                 symbol=instrument.symbol,
@@ -326,20 +325,18 @@ def acquire_monthly_marks(
                 pip_size=instrument.pip_size,
                 invert=instrument.invert,
                 offline=offline,
-            )
-            for month in months
-        )
-
-    output: list[SelectedMonthlyTick] = []
-    with ThreadPoolExecutor(max_workers=workers) as executor:
-        futures = {
-            executor.submit(acquire_instrument, instrument): instrument.currency
+            ): (instrument.currency, month)
             for instrument in config.instruments
+            for month in months
         }
         for future in as_completed(futures):
             selected = future.result()
-            output.extend(selected)
-            print(f"acquired {futures[future]}: {len(selected)} monthly marks")
+            output.append(selected)
+            if len(output) % len(months) == 0:
+                print(
+                    f"acquired {len(output)}/{len(futures)} monthly marks",
+                    flush=True,
+                )
     output.sort(key=lambda item: (item.month, item.currency))
     expected = len(months) * len(config.instruments)
     if len(output) != expected:
